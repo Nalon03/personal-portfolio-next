@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import SharedHeader from './SharedHeader'
 import AnimatedBackground from './AnimatedBackground'
 
@@ -41,15 +42,15 @@ const AboutSection: React.FC = () => {
               {/* Profile Image */}
               <div className="relative">
                 <motion.div
-                  className="w-80 h-80 mx-auto rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl"
+                  className="w-64 h-64 mx-auto rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <Image
                     src="/proff-profile.jpg"
                     alt="Grace Yaa Nalon"
-                    width={320}
-                    height={320}
+                    width={256}
+                    height={256}
                     className="object-cover w-full h-full"
                     priority
                   />
@@ -145,18 +146,30 @@ const AboutSection: React.FC = () => {
 
               {/* Call to Action */}
               <motion.div
-                className="pt-4"
+                className="pt-4 flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <motion.button
-                  className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-medium rounded-lg hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View My Work
-                </motion.button>
+                <Link href="/projects">
+                  <motion.button
+                    className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-medium rounded-lg hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View My Work
+                  </motion.button>
+                </Link>
+                
+                <Link href="/contact">
+                  <motion.button
+                    className="px-8 py-3 bg-transparent border border-white/60 text-white font-medium rounded-lg hover:bg-white/10 hover:border-white hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Get in Touch
+                  </motion.button>
+                </Link>
               </motion.div>
             </motion.div>
           </div>

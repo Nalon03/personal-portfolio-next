@@ -131,9 +131,9 @@ const ScrollablePortfolio: React.FC = () => {
       </section>
 
       {/* Minimal Separator */}
-      <div className="flex justify-center py-0.5">
+      {/* <div className="flex justify-center py-0.5">
         <div className="w-16 h-px bg-cyan-400/30"></div>
-      </div>
+      </div> */}
 
       {/* Projects Section */}
       <section id="projects" className="pt-24">
@@ -141,9 +141,9 @@ const ScrollablePortfolio: React.FC = () => {
       </section>
 
       {/* Minimal Separator */}
-      <div className="flex justify-center py-0.5">
+      {/* <div className="flex justify-center py-0.5">
         <div className="w-16 h-px bg-cyan-400/30"></div>
-      </div>
+      </div> */}
 
       {/* Skills Section */}
       <section id="skills" className="pt-24">
@@ -151,9 +151,9 @@ const ScrollablePortfolio: React.FC = () => {
       </section>
 
       {/* Minimal Separator */}
-      <div className="flex justify-center py-0.5">
+      {/* <div className="flex justify-center py-0.5">
         <div className="w-16 h-px bg-cyan-400/30"></div>
-      </div>
+      </div> */}
 
       {/* Contact Section */}
       <section id="contact" className="pt-24">
