@@ -9,7 +9,10 @@ interface AnimatedBackgroundProps {
 
 const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true }) => {
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    // Added min-h-screen here to ensure it covers at least the viewport. 
+    // Since it's 'absolute inset-0', it will naturally stretch to cover the full content 
+    // height, provided its parent element also expands with the content.
+    <div className="absolute inset-0 min-h-screen">
       {/* Background - Animated or Static */}
       {animated ? (
         <motion.div 
@@ -29,6 +32,8 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
         />
       ) : (
         <div 
+          // Removed the restrictive h-[100vh-120px] and margin utilities. 
+          // 'absolute inset-0' now correctly forces it to fill the entire container.
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(135deg, #08203A 0%, #0a2540 25%, #0c2a46 50%, #0a2540 75%, #08203A 100%)'

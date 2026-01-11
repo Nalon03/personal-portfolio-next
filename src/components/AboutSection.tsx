@@ -9,11 +9,11 @@ import AnimatedBackground from './AnimatedBackground'
 
 const AboutSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden  ">
       <AnimatedBackground animated={false} />
 
       {/* Main About Content */}
-      <div className="relative z-10 flex-1 px-8 py-16">
+      <div className="relative z-10 flex-1 my-28 py-32">
         <div className="max-w-6xl mx-auto">
           
           {/* Page Title */}
@@ -23,7 +23,7 @@ const AboutSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
               About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Me</span>
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto rounded-full"></div>
@@ -34,7 +34,7 @@ const AboutSection: React.FC = () => {
             
             {/* Left Side - Image and Personal Info */}
             <motion.div
-              className="space-y-8"
+              className="space-y-12"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -106,15 +106,15 @@ const AboutSection: React.FC = () => {
 
             {/* Right Side - About Text */}
             <motion.div
-              className="space-y-6"
+              className="space-y-16"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {/* Introduction */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Hello, I'm Grace Yaa Nalon
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-12">
+                  Hello, I&apos;m Grace Yaa Nalon
                 </h2>
                 <p className="text-lg text-white/90 leading-relaxed">
                   A passionate full-stack developer with a love for creating beautiful, 
@@ -129,49 +129,13 @@ const AboutSection: React.FC = () => {
                 <p className="text-white/80 leading-relaxed">
                   My journey into development started with curiosity and a desire to understand 
                   how things work. What began as simple HTML pages has evolved into building 
-                  complex applications that serve real users. I'm constantly learning and 
+                  complex applications that serve real users. I&apos;m constantly learning and 
                   adapting to new technologies while maintaining a focus on clean, maintainable code.
                 </p>
               </div>
 
-              {/* Philosophy */}
-              <div>
-                <h3 className="text-xl font-semibold text-blue-400 mb-3">My Philosophy</h3>
-                <p className="text-white/80 leading-relaxed">
-                  I believe great software is built through collaboration, empathy, and attention 
-                  to detail. Every line of code should have a purpose, every design decision should 
-                  serve the user, and every project should tell a story.
-                </p>
-              </div>
 
-              {/* Call to Action */}
-              <motion.div
-                className="pt-4 flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <Link href="/projects">
-                  <motion.button
-                    className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-400 text-white font-medium rounded-lg hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    View My Work
-                  </motion.button>
-                </Link>
-                
-                <Link href="/contact">
-                  <motion.button
-                    className="px-8 py-3 bg-transparent border border-white/60 text-white font-medium rounded-lg hover:bg-white/10 hover:border-white hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Get in Touch
-                  </motion.button>
-                </Link>
-              </motion.div>
-            </motion.div>
+             </motion.div>
           </div>
         </div>
       </div>

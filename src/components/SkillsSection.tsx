@@ -114,7 +114,7 @@ const SkillsSection: React.FC = () => {
           >
             <h2 className="text-2xl font-bold text-white mb-4">Always Learning</h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              Technology evolves rapidly, and I'm committed to staying current with the latest 
+              Technology evolves rapidly, and I&apos;m committed to staying current with the latest 
               trends and best practices. I regularly participate in online courses, contribute 
               to open-source projects, and build personal projects to expand my skill set.
             </p>

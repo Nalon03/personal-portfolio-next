@@ -122,7 +122,7 @@ const ProjectsSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 1.0 }}
           >
             <h2 className="text-2xl font-bold text-white mb-4">Interested in working together?</h2>
-            <p className="text-white/80 mb-8">Let's discuss your next project and bring your ideas to life.</p>
+            <p className="text-white/80 mb-8">Let&apos;s discuss your next project and bring your ideas to life.</p>
             <motion.button
               className="px-8 py-3 bg-gradient-to-r from-purple-400 to-pink-400 text-white font-medium rounded-lg hover:from-purple-500 hover:to-pink-500 transition-all duration-300 shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}

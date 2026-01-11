@@ -11,7 +11,8 @@ export const useProjectsQuery = () => {
     queryKey: PROJECTS_QUERY_KEY,
     queryFn: async (): Promise<Project[]> => {
       const response = await apiClient.get('/projects')
-      return response.data
+      // API returns { success: true, data: projects }
+      return response.data.data || response.data
     },
   })
 }
@@ -23,7 +24,8 @@ export const useProjectMutation = () => {
   return useMutation({
     mutationFn: async (project: Omit<Project, 'id'>): Promise<Project> => {
       const response = await apiClient.post('/projects', project)
-      return response.data
+      // API returns { success: true, data: project }
+      return response.data.data || response.data
     },
     onSuccess: () => {
       // Invalidate and refetch projects
@@ -39,7 +41,8 @@ export const useUpdateProjectMutation = () => {
   return useMutation({
     mutationFn: async ({ id, ...project }: Partial<Project> & { id: string }): Promise<Project> => {
       const response = await apiClient.put(`/projects/${id}`, project)
-      return response.data
+      // API returns { success: true, data: project }
+      return response.data.data || response.data
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: PROJECTS_QUERY_KEY })

@@ -64,11 +64,11 @@ const ContactSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <div>
-                <h2 className="text-3xl font-bold text-white mb-4">Let's Connect</h2>
+                <h2 className="text-3xl font-bold text-white mb-4">Let&apos;s Connect</h2>
                 <p className="text-lg text-white/80 leading-relaxed">
-                  I'm always excited to work on new projects and collaborate with amazing people. 
+                  I&apos;m always excited to work on new projects and collaborate with amazing people. 
                   Whether you have a question, want to work together, or just want to say hi, 
-                  I'd love to hear from you!
+                  I&apos;d love to hear from you!
                 </p>
               </div>
 
