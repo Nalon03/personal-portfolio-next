@@ -25,20 +25,14 @@ const Hero: React.FC = () => {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground />
       
-      {/* Central Profile Content - Centered layout */}
       <div className="relative z-10 flex items-center justify-center h-full my-28">
-        
-        {/* Decorative Box Container - Reduced height, centered */}
         <motion.div
           className="relative w-[629px] h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[510px] rounded-2xl border border-white/30 flex flex-col items-center  px-6 py-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          
-          {/* Main Profile Content - Top section */}
           <div className="flex flex-col items-center text-center space-y-5 mb-8">
-            {/* Profile Picture - Centered */}
             <motion.div
               className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-white shadow-2xl flex items-center justify-center bg-gray-100"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -55,7 +49,6 @@ const Hero: React.FC = () => {
               />
             </motion.div>
             
-            {/* "MY NAME IS" Text */}
             <motion.p
               className="text-sm text-white font-light tracking-wider uppercase"
               initial={{ opacity: 0, y: 20 }}
@@ -65,7 +58,6 @@ const Hero: React.FC = () => {
               MY NAME IS
             </motion.p>
             
-            {/* Main Name */}
             <motion.h1
               className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight"
               initial={{ opacity: 0, y: 20 }}
@@ -75,7 +67,6 @@ const Hero: React.FC = () => {
               GRACE YAA NALON
             </motion.h1>
             
-            {/* Separator Line */}
             <motion.div
               className="w-20 h-0.5 bg-white"
               initial={{ width: 0 }}
@@ -83,7 +74,6 @@ const Hero: React.FC = () => {
               transition={{ duration: 1, delay: 1.0 }}
             />
             
-            {/* Professional Title */}
             <motion.div
               className="text-sm text-white font-medium tracking-wide"
               initial={{ opacity: 0, y: 20 }}
@@ -94,9 +84,6 @@ const Hero: React.FC = () => {
             </motion.div>
           </div>
 
-          
-
-            {/* Call to Action Buttons - Clear and visible */}
             <motion.div
               className="mt-3 py-6 flex flex-col sm:flex-row gap-4 items-center"
               initial={{ opacity: 0, y: 20 }}

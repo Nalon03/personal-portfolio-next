@@ -9,11 +9,7 @@ interface AnimatedBackgroundProps {
 
 const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true }) => {
   return (
-    // Added min-h-screen here to ensure it covers at least the viewport. 
-    // Since it's 'absolute inset-0', it will naturally stretch to cover the full content 
-    // height, provided its parent element also expands with the content.
     <div className="absolute inset-0 min-h-screen">
-      {/* Background - Animated or Static */}
       {animated ? (
         <motion.div 
           className="absolute inset-0"
@@ -32,8 +28,6 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
         />
       ) : (
         <div 
-          // Removed the restrictive h-[100vh-120px] and margin utilities. 
-          // 'absolute inset-0' now correctly forces it to fill the entire container.
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(135deg, #08203A 0%, #0a2540 25%, #0c2a46 50%, #0a2540 75%, #08203A 100%)'
@@ -41,9 +35,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
         />
       )}
       
-      {/* Subtle Coding Pattern - Only in white spaces around rectangle */}
       <div className="absolute inset-0 opacity-30">
-        {/* Code-like pattern using CSS */}
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 1%, transparent 2%),
@@ -55,7 +47,6 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
           backgroundPosition: '0 0, 0 0, 0 0, 0 0'
         }} />
         
-        {/* Binary-like dots pattern */}
         <div className="absolute inset-0" style={{
           backgroundImage: `
             radial-gradient(circle at 2px 2px, rgba(255,255,255,0.08) 0.5px, transparent 0.5px),
@@ -65,7 +56,6 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
           backgroundSize: '12px 12px, 8px 8px, 16px 16px'
         }} />
         
-        {/* Circuit-like lines */}
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 1px, transparent 1px),

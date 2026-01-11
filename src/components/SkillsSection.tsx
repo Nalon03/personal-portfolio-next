@@ -46,11 +46,8 @@ const SkillsSection: React.FC = () => {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground animated={false} />
 
-      {/* Main Skills Content */}
       <div className="relative z-10 flex-1 px-8 py-16">
         <div className="max-w-7xl mx-auto">
-          
-          {/* Page Title */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -63,7 +60,6 @@ const SkillsSection: React.FC = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-400 mx-auto rounded-full"></div>
           </motion.div>
 
-          {/* Skills Categories */}
           <div className="space-y-12">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
@@ -105,7 +101,6 @@ const SkillsSection: React.FC = () => {
             ))}
           </div>
 
-          {/* Additional Info */}
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}

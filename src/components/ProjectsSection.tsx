@@ -40,11 +40,8 @@ const ProjectsSection: React.FC = () => {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground animated={false} />
 
-      {/* Main Projects Content */}
       <div className="relative z-10 flex-1 px-8 py-16">
         <div className="max-w-7xl mx-auto">
-          
-          {/* Page Title */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -57,7 +54,6 @@ const ProjectsSection: React.FC = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto rounded-full"></div>
           </motion.div>
 
-          {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -68,17 +64,14 @@ const ProjectsSection: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
                 whileHover={{ scale: 1.02 }}
               >
-                {/* Project Image */}
                 <div className="h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
                   <div className="text-4xl text-purple-400">🚀</div>
                 </div>
                 
-                {/* Project Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
                   <p className="text-white/80 mb-4 leading-relaxed">{project.description}</p>
                   
-                  {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech) => (
                       <span
@@ -90,7 +83,6 @@ const ProjectsSection: React.FC = () => {
                     ))}
                   </div>
                   
-                  {/* Action Buttons */}
                   <div className="flex gap-3">
                     <motion.a
                       href={project.liveUrl}
@@ -114,7 +106,6 @@ const ProjectsSection: React.FC = () => {
             ))}
           </div>
 
-          {/* Call to Action */}
           <motion.div
             className="text-center mt-16"
             initial={{ opacity: 0, y: 30 }}

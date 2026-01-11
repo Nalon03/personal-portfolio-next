@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Placeholder API route for projects
 export async function GET(request: NextRequest) {
   try {
-    // Mock data - replace with actual database calls
     const projects = [
       {
         id: '1',
@@ -30,7 +28,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     
-    // Mock project creation - replace with actual database operations
     const newProject = {
       id: Date.now().toString(),
       ...body,

@@ -12,11 +12,8 @@ const AboutSection: React.FC = () => {
     <section className="relative min-h-screen flex flex-col overflow-hidden  ">
       <AnimatedBackground animated={false} />
 
-      {/* Main About Content */}
       <div className="relative z-10 flex-1 my-28 py-32">
         <div className="max-w-6xl mx-auto">
-          
-          {/* Page Title */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -29,17 +26,13 @@ const AboutSection: React.FC = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto rounded-full"></div>
           </motion.div>
 
-          {/* Content Grid */}
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Side - Image and Personal Info */}
             <motion.div
               className="space-y-12"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {/* Profile Image */}
               <div className="relative">
                 <motion.div
                   className="w-64 h-64 mx-auto rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl"
@@ -56,7 +49,6 @@ const AboutSection: React.FC = () => {
                   />
                 </motion.div>
                 
-                {/* Decorative Elements */}
                 <motion.div
                   className="absolute -top-4 -right-4 w-8 h-8 bg-cyan-400/20 rounded-full"
                   animate={{ 
@@ -83,7 +75,6 @@ const AboutSection: React.FC = () => {
                 />
               </div>
 
-              {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4">
                 <motion.div
                   className="bg-white/5 backdrop-blur-sm rounded-lg p-4 text-center border border-white/10"
@@ -104,14 +95,12 @@ const AboutSection: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Right Side - About Text */}
             <motion.div
               className="space-y-16"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {/* Introduction */}
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-12">
                   Hello, I&apos;m Grace Yaa Nalon
@@ -123,7 +112,6 @@ const AboutSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* Story */}
               <div>
                 <h3 className="text-xl font-semibold text-cyan-400 mb-3">My Journey</h3>
                 <p className="text-white/80 leading-relaxed">

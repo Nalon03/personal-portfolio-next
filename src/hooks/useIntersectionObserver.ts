@@ -27,7 +27,6 @@ export const useIntersectionObserver = ({
   }
 
   useEffect(() => {
-    // Only run on client side
     if (typeof window === 'undefined') return
     
     const hasIOSupport = !!window.IntersectionObserver

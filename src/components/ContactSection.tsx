@@ -37,11 +37,8 @@ const ContactSection: React.FC = () => {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground animated={false} />
 
-      {/* Main Contact Content */}
       <div className="relative z-10 flex-1 px-8 py-16">
         <div className="max-w-6xl mx-auto">
-          
-          {/* Page Title */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -55,8 +52,6 @@ const ContactSection: React.FC = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            
-            {/* Contact Information */}
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
@@ -72,7 +67,6 @@ const ContactSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* Contact Cards */}
               <div className="space-y-4">
                 {contactInfo.map((item, index) => (
                   <motion.a
@@ -96,7 +90,6 @@ const ContactSection: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Contact Form */}
             <motion.div
               className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-8"
               initial={{ opacity: 0, x: 50 }}

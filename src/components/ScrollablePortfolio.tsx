@@ -14,7 +14,7 @@ const ScrollablePortfolio: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['Home', 'About', 'Projects', 'Skills', 'Contact']
-      const scrollPosition = window.scrollY + 200 // Offset for header
+      const scrollPosition = window.scrollY + 200
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i].toLowerCase())
@@ -38,7 +38,6 @@ const ScrollablePortfolio: React.FC = () => {
 
   return (
     <div className="relative">
-      {/* Fixed Header - Always on top */}
       <motion.header 
         className="fixed top-0 left-0 right-0 z-50 w-full py-6 px-8 bg-black/20 backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
@@ -46,7 +45,6 @@ const ScrollablePortfolio: React.FC = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* Logo/Name */}
           <motion.div
             className="text-xl font-bold text-white bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent cursor-pointer"
             initial={{ opacity: 0, x: -20 }}
@@ -57,7 +55,6 @@ const ScrollablePortfolio: React.FC = () => {
             GYN
           </motion.div>
           
-          {/* Navigation Menu */}
           <motion.nav 
             className="hidden md:flex space-x-8"
             initial={{ opacity: 0, x: 20 }}
@@ -98,7 +95,6 @@ const ScrollablePortfolio: React.FC = () => {
             ))}
           </motion.nav>
           
-          {/* Mobile Menu Button */}
           <motion.button
             className="md:hidden text-white p-2"
             initial={{ opacity: 0 }}
@@ -111,7 +107,6 @@ const ScrollablePortfolio: React.FC = () => {
           </motion.button>
         </div>
         
-        {/* Header Bottom Line */}
         <motion.div
           className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent"
           initial={{ width: 0 }}
@@ -120,42 +115,22 @@ const ScrollablePortfolio: React.FC = () => {
         />
       </motion.header>
 
-      {/* Home Section - Fixed height, no scrolling */}
       <section id="home" className="h-screen">
         <Hero />
       </section>
 
-      {/* About Section */}
       <section id="about" className="pt-24">
         <AboutSection />
       </section>
 
-      {/* Minimal Separator */}
-      {/* <div className="flex justify-center py-0.5">
-        <div className="w-16 h-px bg-cyan-400/30"></div>
-      </div> */}
-
-      {/* Projects Section */}
       <section id="projects" className="pt-24">
         <ProjectsSection />
       </section>
 
-      {/* Minimal Separator */}
-      {/* <div className="flex justify-center py-0.5">
-        <div className="w-16 h-px bg-cyan-400/30"></div>
-      </div> */}
-
-      {/* Skills Section */}
       <section id="skills" className="pt-24">
         <SkillsSection />
       </section>
 
-      {/* Minimal Separator */}
-      {/* <div className="flex justify-center py-0.5">
-        <div className="w-16 h-px bg-cyan-400/30"></div>
-      </div> */}
-
-      {/* Contact Section */}
       <section id="contact" className="pt-24">
         <ContactSection />
       </section>
