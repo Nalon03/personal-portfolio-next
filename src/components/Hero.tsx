@@ -25,16 +25,17 @@ const Hero: React.FC = () => {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <AnimatedBackground />
       
-      <div className="relative z-10 flex items-center justify-center h-full my-28">
+      <div className="relative z-10 flex items-center justify-center h-full my-24">
         <motion.div
-          className="relative w-[629px] h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[510px] rounded-2xl border border-white/30 flex flex-col items-center  px-6 py-6"
+          className="relative w-[629px] h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center  px-6 py-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
+          style={{ opacity: 1 }}
         >
-          <div className="flex flex-col items-center text-center space-y-5 mb-8">
+          <div className="flex flex-col items-center text-center space-y-5 mb-2">
             <motion.div
-              className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-white shadow-2xl flex items-center justify-center bg-gray-100"
+              className="w-36 h-36 md:w-34 md:h-34 rounded-full overflow-hidden border-2 border-white shadow-2xl flex items-center justify-center bg-gray-100"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}

@@ -10,8 +10,10 @@ import ContactSection from './ContactSection'
 
 const ScrollablePortfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState('Home')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
       const sections = ['Home', 'About', 'Projects', 'Skills', 'Contact']
       const scrollPosition = window.scrollY + 200
@@ -36,13 +38,22 @@ const ScrollablePortfolio: React.FC = () => {
     }
   }
 
+  if (!mounted) {
+    return (
+      <div className="relative" style={{ minHeight: '100vh', background: '#08203A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ color: 'white' }}>Loading...</div>
+      </div>
+    )
+  }
+
   return (
-    <div className="relative">
+    <div className="relative" style={{ minHeight: '100vh', background: '#08203A' }}>
       <motion.header 
         className="fixed top-0 left-0 right-0 z-50 w-full py-6 px-8 bg-black/20 backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        style={{ opacity: 1 }}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <motion.div
@@ -51,6 +62,7 @@ const ScrollablePortfolio: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             onClick={() => scrollToSection('home')}
+            style={{ opacity: 1 }}
           >
             GYN
           </motion.div>
@@ -60,6 +72,7 @@ const ScrollablePortfolio: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            style={{ opacity: 1 }}
           >
             {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item, index) => (
               <motion.button
@@ -115,23 +128,23 @@ const ScrollablePortfolio: React.FC = () => {
         />
       </motion.header>
 
-      <section id="home" className="h-screen">
+      <section id="home" className="">
         <Hero />
       </section>
 
-      <section id="about" className="pt-24">
+      <section id="about" >
         <AboutSection />
       </section>
 
-      <section id="projects" className="pt-24">
+      <section id="projects" className="">
         <ProjectsSection />
       </section>
 
-      <section id="skills" className="pt-24">
+      <section id="skills" className="">
         <SkillsSection />
       </section>
 
-      <section id="contact" className="pt-24">
+      <section id="contact" className="">
         <ContactSection />
       </section>
     </div>
