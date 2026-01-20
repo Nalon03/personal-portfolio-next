@@ -136,14 +136,14 @@ const ScrollablePortfolio: React.FC = () => {
         <AboutSection />
       </section>
 
-      <section id="projects" className="">
-        <ProjectsSection />
-      </section>
-
       <section id="skills" className="">
         <SkillsSection />
       </section>
 
+      <section id="projects" className="">
+        <ProjectsSection />
+      </section>
+      
       <section id="contact" className="">
         <ContactSection />
       </section>

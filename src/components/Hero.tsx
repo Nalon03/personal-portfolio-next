@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative min-h-screen flex flex-col ">
       <AnimatedBackground />
       
       <div className="relative z-10 flex items-center justify-center h-full my-24">
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
             </motion.div>
             
             <motion.p
-              className="text-sm text-white font-light tracking-wider uppercase"
+              className="text-xs text-white/70 font-light tracking-widest uppercase font-sans"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
             </motion.p>
             
             <motion.h1
-              className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight"
+              className="text-lg md:text-xl lg:text-2xl font-bold text-white tracking-tight leading-tight font-display"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -69,14 +69,14 @@ const Hero: React.FC = () => {
             </motion.h1>
             
             <motion.div
-              className="w-20 h-0.5 bg-white"
+              className="w-16 h-0.5 bg-white"
               initial={{ width: 0 }}
-              animate={{ width: "5rem" }}
+              animate={{ width: "4rem" }}
               transition={{ duration: 1, delay: 1.0 }}
             />
             
             <motion.div
-              className="text-sm text-white font-medium tracking-wide"
+              className="text-xs text-white/80 font-medium tracking-wide font-sans"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 2.2 }}
             >
               <motion.button
-                className="px-6 py-2.5 bg-transparent border border-cyan-400/80 text-cyan-400 text-sm font-medium rounded-md hover:bg-cyan-400/20 hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300"
+                className="px-5 py-2 bg-transparent border border-cyan-400/80 text-cyan-400 text-xs font-medium rounded-md hover:bg-cyan-400/20 hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 font-sans"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToProjects}
@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
               </motion.button>
               
               <motion.button
-                className="px-6 py-2.5 bg-transparent border border-white/60 text-white text-sm font-medium rounded-md hover:bg-white/10 hover:border-white hover:text-white transition-all duration-300"
+                className="px-5 py-2 bg-transparent border border-white/60 text-white text-xs font-medium rounded-md hover:bg-white/10 hover:border-white hover:text-white transition-all duration-300 font-sans"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToContact}
