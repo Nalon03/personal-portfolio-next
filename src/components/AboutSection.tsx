@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import AnimatedBackground from './AnimatedBackground'
 
 interface TypewriterTextProps {
   text: string
@@ -178,8 +179,10 @@ const AboutSection: React.FC = () => {
     <section 
       id="about"
       ref={sectionRef}
-      className="about-section relative min-h-screen about-gradient-bg overflow-hidden"
+      className="about-section relative min-h-screen overflow-hidden"
     >
+      <AnimatedBackground animated={false} />
+
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
