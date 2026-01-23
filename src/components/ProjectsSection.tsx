@@ -237,6 +237,31 @@ const ProjectsSection: React.FC = () => {
     }
   }
 
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (!trackRef.current) return
+    
+    const SCROLL_AMOUNT = 300
+    const trackWidth = trackRef.current.scrollWidth / 2
+    const scrollDirection = direction === 'right' ? 1 : -1
+    
+    positionRef.current += SCROLL_AMOUNT * scrollDirection
+    
+    if (positionRef.current < 0) {
+      positionRef.current = trackWidth + positionRef.current
+    } else if (positionRef.current >= trackWidth) {
+      positionRef.current = positionRef.current - trackWidth
+    }
+    
+    trackRef.current.style.transition = 'transform 0.4s ease-out'
+    trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
+    
+    setTimeout(() => {
+      if (trackRef.current) {
+        trackRef.current.style.transition = ''
+      }
+    }, 400)
+  }
+
   const scrollToContact = () => {
     const element = document.getElementById('contact')
     if (element) {
@@ -272,18 +297,100 @@ const ProjectsSection: React.FC = () => {
             />
           </motion.header>
 
-          <div 
-            ref={wrapperRef}
-            className="projects-carousel-wrapper relative overflow-hidden w-full rounded-xl"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            role="region"
-            aria-label="Projects carousel - hover to pause auto-scroll"
-            aria-roledescription="carousel"
-          >
-            <div className="absolute inset-y-0 left-0 w-1.5 z-20 pointer-events-none bg-gradient-to-r from-[#0a2540] to-transparent" aria-hidden="true" />
-            <div className="absolute inset-y-0 right-0 w-2 z-20 pointer-events-none bg-gradient-to-l from-[#0a2540] to-transparent" aria-hidden="true" />
-            <div
+          <div className="projects-carousel-outer relative">
+            <motion.button 
+              className="left-scroll-indicators absolute -left-4 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              onClick={() => scrollCarousel('left')}
+              aria-label="Scroll projects left"
+              type="button"
+            >
+              <motion.div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/40 backdrop-blur-sm hover:border-cyan-400 hover:bg-cyan-500/30 transition-colors duration-200"
+                animate={{ 
+                  x: [-3, 0, -3],
+                  boxShadow: [
+                    '0 0 8px rgba(6, 182, 212, 0.3)',
+                    '0 0 16px rgba(6, 182, 212, 0.5)',
+                    '0 0 8px rgba(6, 182, 212, 0.3)'
+                  ]
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              >
+                <svg 
+                  width="14" 
+                  height="14" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="text-cyan-400"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </motion.div>
+            </motion.button>
+            <motion.button 
+              className="right-scroll-indicators absolute -right-4 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              onClick={() => scrollCarousel('right')}
+              aria-label="Scroll projects right"
+              type="button"
+            >
+              <motion.div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/40 backdrop-blur-sm hover:border-cyan-400 hover:bg-cyan-500/30 transition-colors duration-200"
+                animate={{ 
+                  x: [3, 0, 3],
+                  boxShadow: [
+                    '0 0 8px rgba(6, 182, 212, 0.3)',
+                    '0 0 16px rgba(6, 182, 212, 0.5)',
+                    '0 0 8px rgba(6, 182, 212, 0.3)'
+                  ]
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              >
+                <svg 
+                  width="14" 
+                  height="14" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="text-cyan-400"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </motion.div>
+            </motion.button>
+
+            <div 
+              ref={wrapperRef}
+              className="projects-carousel-wrapper relative overflow-hidden w-full rounded-xl"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              role="region"
+              aria-label="Projects carousel - hover to pause auto-scroll"
+              aria-roledescription="carousel"
+            >
+              <div className="left-gradient-fade absolute inset-y-0 left-0 w-2 z-20 pointer-events-none bg-gradient-to-r from-[#0a2540] via-[#0a2540]/70 to-transparent" aria-hidden="true" />
+              
+              <div className="right-gradient-fade absolute inset-y-0 right-0 w-2 z-20 pointer-events-none bg-gradient-to-l from-[#0a2540] via-[#0a2540]/70 to-transparent" aria-hidden="true" />
+              
+              <div
               ref={trackRef}
               className="projects-carousel-track flex gap-6 py-4"
               role="list"
@@ -365,6 +472,7 @@ const ProjectsSection: React.FC = () => {
                   </div>
                 </article>
               ))}
+              </div>
             </div>
           </div>
 
