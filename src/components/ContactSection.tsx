@@ -1,38 +1,63 @@
 'use client'
 
-import React, { useId } from 'react'
-import { motion } from 'framer-motion'
+import React, { useId, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedBackground from './AnimatedBackground'
 
+interface FormData {
+  name: string
+  email: string
+  subject: string
+  message: string
+  honeypot: string
+}
+
+interface FormStatus {
+  type: 'idle' | 'loading' | 'success' | 'error'
+  message: string
+}
+
 const ContactSection: React.FC = () => {
-  // Generate unique IDs for form fields
   const nameId = useId()
   const emailId = useId()
   const subjectId = useId()
   const messageId = useId()
   const formDescriptionId = useId()
 
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    honeypot: ''
+  })
+
+  const [status, setStatus] = useState<FormStatus>({
+    type: 'idle',
+    message: ''
+  })
+
   const contactInfo = [
     {
       icon: "📧",
       title: "Email",
-      value: "grace.yaa.nalon@email.com",
-      link: "mailto:grace.yaa.nalon@email.com",
-      ariaLabel: "Send email to grace.yaa.nalon@email.com"
+      value: "nalongrace03@gmail.com",
+      link: "mailto:nalongrace03@gmail.com",
+      ariaLabel: "Send email to nalongrace03@gmail.com"
     },
     {
       icon: "📱",
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
-      ariaLabel: "Call +1 (555) 123-4567"
+      value: "+233 XX XXX XXXX",
+      link: "tel:+233XXXXXXXX",
+      ariaLabel: "Call phone number"
     },
     {
       icon: "📍",
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Ghana",
       link: "#",
-      ariaLabel: "Location: San Francisco, California"
+      ariaLabel: "Location: Ghana"
     },
     {
       icon: "💼",
@@ -43,9 +68,56 @@ const ContactSection: React.FC = () => {
     }
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
+    
+    setStatus({ type: 'loading', message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setStatus({
+        type: 'success',
+        message: 'Thank you! Your message has been sent successfully.'
+      })
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        honeypot: ''
+      })
+
+      setTimeout(() => {
+        setStatus({ type: 'idle', message: '' })
+      }, 5000)
+
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
+      })
+    }
   }
 
   return (
@@ -143,6 +215,19 @@ const ContactSection: React.FC = () => {
                 aria-labelledby="form-heading"
                 aria-describedby={formDescriptionId}
               >
+                <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="honeypot"
+                    value={formData.honeypot}
+                    onChange={handleInputChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div className="contact-form-row grid md:grid-cols-2 gap-4">
                   <div className="contact-form-group">
                     <label 
@@ -159,7 +244,10 @@ const ContactSection: React.FC = () => {
                       required
                       aria-required="true"
                       autoComplete="name"
-                      className="contact-form-input w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 font-sans"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      disabled={status.type === 'loading'}
+                      className="contact-form-input w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 font-sans focus:border-cyan-400/50 focus:outline-none focus:ring-1 focus:ring-cyan-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Your name"
                     />
                   </div>
@@ -178,7 +266,10 @@ const ContactSection: React.FC = () => {
                       required
                       aria-required="true"
                       autoComplete="email"
-                      className="contact-form-input w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 font-sans"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      disabled={status.type === 'loading'}
+                      className="contact-form-input w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 font-sans focus:border-cyan-400/50 focus:outline-none focus:ring-1 focus:ring-cyan-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -198,7 +289,10 @@ const ContactSection: React.FC = () => {
                     type="text"
                     required
                     aria-required="true"
-                    className="contact-form-input w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 font-sans"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    disabled={status.type === 'loading'}
+                    className="contact-form-input w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 font-sans focus:border-cyan-400/50 focus:outline-none focus:ring-1 focus:ring-cyan-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -217,19 +311,71 @@ const ContactSection: React.FC = () => {
                     rows={4}
                     required
                     aria-required="true"
-                    className="contact-form-textarea w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 resize-none font-sans"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    disabled={status.type === 'loading'}
+                    className="contact-form-textarea w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/50 transition-colors duration-300 resize-none font-sans focus:border-cyan-400/50 focus:outline-none focus:ring-1 focus:ring-cyan-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Tell me about your project or just say hello!"
                   />
                 </div>
                 
+                <AnimatePresence mode="wait">
+                  {status.type === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <p className="text-emerald-400 text-sm font-sans flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        {status.message}
+                      </p>
+                    </motion.div>
+                  )}
+
+                  {status.type === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg"
+                      role="alert"
+                      aria-live="assertive"
+                    >
+                      <p className="text-red-400 text-sm font-sans flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        {status.message}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <motion.button
                   type="submit"
-                  className="contact-form-btn w-full px-5 py-2.5 bg-transparent border border-cyan-400/80 text-cyan-400 text-xs font-medium rounded-md hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 font-sans focus-ring"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  aria-label="Submit contact form"
+                  disabled={status.type === 'loading'}
+                  className="contact-form-btn w-full px-5 py-2.5 bg-transparent border border-cyan-400/80 text-cyan-400 text-xs font-medium rounded-md hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 font-sans focus-ring disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                  whileHover={status.type !== 'loading' ? { scale: 1.02 } : {}}
+                  whileTap={status.type !== 'loading' ? { scale: 0.98 } : {}}
+                  aria-label={status.type === 'loading' ? 'Sending message...' : 'Submit contact form'}
                 >
-                  Send Message
+                  {status.type === 'loading' ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send Message'
+                  )}
                 </motion.button>
               </form>
             </motion.div>
