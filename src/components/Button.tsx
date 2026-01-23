@@ -7,6 +7,9 @@ interface ButtonProps {
   onClick?: () => void
   disabled?: boolean
   className?: string
+  ariaLabel?: string
+  ariaDescribedBy?: string
+  type?: 'button' | 'submit' | 'reset'
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,12 +19,15 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled = false,
   className = '',
+  ariaLabel,
+  ariaDescribedBy,
+  type = 'button',
 }) => {
-  const baseClasses = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2'
+  const baseClasses = 'font-medium rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2'
   
   const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus-visible:outline-blue-500',
+    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus-visible:outline-gray-500',
   }
   
   const sizeClasses = {
@@ -34,9 +40,13 @@ const Button: React.FC<ButtonProps> = ({
   
   return (
     <button
+      type={type}
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className}`}
       onClick={onClick}
       disabled={disabled}
+      aria-disabled={disabled}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedBy}
     >
       {children}
     </button>

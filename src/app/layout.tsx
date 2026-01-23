@@ -35,6 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${inter.className}`}>
+        {/* Skip link for keyboard navigation */}
+        <a 
+          href="#main-content" 
+          className="skip-link"
+          aria-label="Skip to main content"
+        >
+          Skip to main content
+        </a>
         <Providers>
           {children}
         </Providers>

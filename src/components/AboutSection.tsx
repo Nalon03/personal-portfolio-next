@@ -63,9 +63,9 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   if (!hasStarted) return null
 
   return (
-    <span className={className}>
+    <span className={className} aria-live="polite" aria-atomic="false">
       {displayedText}
-      {!isComplete && <span className="typewriter-cursor animate-pulse text-cyan-400">|</span>}
+      {!isComplete && <span className="typewriter-cursor animate-pulse text-cyan-400" aria-hidden="true">|</span>}
     </span>
   )
 }
@@ -89,7 +89,7 @@ const BulletItem: React.FC<BulletItemProps> = ({ text, speed, shouldStart, onCom
 
   return (
     <li className={`bullet-item flex items-start gap-2 min-h-[1.5rem] transition-opacity duration-200 ${showBullet ? 'opacity-100' : 'opacity-0'}`}>
-      <span className="bullet-dot w-1 h-1 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+      <span className="bullet-dot w-1 h-1 rounded-full bg-cyan-400 mt-2 flex-shrink-0" aria-hidden="true" />
       <span>
         <TypewriterText 
           text={text} 
@@ -166,10 +166,11 @@ const AboutSection: React.FC = () => {
       id="about"
       ref={sectionRef}
       className="about-section relative min-h-screen overflow-hidden"
+      aria-labelledby="about-heading"
     >
       <AnimatedBackground animated={false} />
 
-      <div className="about-bg-decor absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="about-bg-decor absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="about-bg-glow-cyan absolute top-20 left-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
         <div className="about-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
@@ -177,6 +178,7 @@ const AboutSection: React.FC = () => {
       <div className="about-content relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <header className="about-header text-center mb-8 md:mb-10">
           <h1 
+            id="about-heading"
             className="about-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display tracking-tight mb-2 opacity-0 animate-fade-in"
             style={{ animationFillMode: 'forwards' }}
           >
@@ -185,15 +187,21 @@ const AboutSection: React.FC = () => {
           <div 
             className="about-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
             style={{ animationFillMode: 'forwards' }}
+            aria-hidden="true"
+            role="presentation"
           />
         </header>
 
-        <div 
+        <article 
           className="about-card glass-card rounded-xl p-6 md:p-8 mb-4 opacity-0 animate-slide-up"
           style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}
+          aria-label="Personal introduction"
         >
           <div className="about-greeting mb-4 text-center">
-            <span className="about-badge inline-block px-2.5 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full mb-3 font-sans">
+            <span 
+              className="about-badge inline-block px-2.5 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full mb-3 font-sans"
+              role="text"
+            >
               Full-Stack Developer
             </span>
             <h2 className="about-name text-xl sm:text-2xl font-bold text-white font-display animate-pop-pulse">
@@ -212,12 +220,13 @@ const AboutSection: React.FC = () => {
               />
             </p>
           </div>
-        </div>
+        </article>
 
-        <div className="about-section-divider section-divider w-full max-w-md mx-auto mb-4" />
+        <div className="about-section-divider section-divider w-full max-w-md mx-auto mb-4" aria-hidden="true" role="presentation" />
 
-        <div className="about-values text-center">
+        <article className="about-values text-center" aria-labelledby="values-heading">
           <h2 
+            id="values-heading"
             className="about-values-title text-xl sm:text-1xl font-bold text-white font-display mb-4 opacity-0 animate-slide-up"
             style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}
           >
@@ -228,16 +237,21 @@ const AboutSection: React.FC = () => {
             className="about-values-card glass-card rounded-xl p-6 md:p-8 opacity-0 animate-slide-up"
             style={{ animationDelay: '400ms', animationFillMode: 'forwards' }}
           >
-            <div className="about-values-list flex flex-wrap justify-center gap-2 mb-6">
+            <ul 
+              className="about-values-list flex flex-wrap justify-center gap-2 mb-6"
+              aria-label="Core values"
+              role="list"
+            >
               {['Clarity', 'Predictability', 'Performance', 'Stability'].map((value) => (
-                <span 
+                <li 
                   key={value}
                   className="about-value-tag px-3 py-1.5 text-xs font-semibold text-cyan-300 bg-cyan-400/10 border border-cyan-400/20 rounded-md font-sans"
+                  role="listitem"
                 >
                   {value}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <p className="about-values-text text-sm sm:text-base text-white/80 leading-relaxed max-w-2xl mx-auto font-sans">
               I believe clean engineering is a craft — not a race. I build systems that are 
@@ -245,9 +259,9 @@ const AboutSection: React.FC = () => {
               a purpose, and every system should be designed with intention.
             </p>
 
-            <div className="about-values-divider w-10 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-6 rounded-full" />
+            <div className="about-values-divider w-10 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-6 rounded-full" aria-hidden="true" role="presentation" />
           </div>
-        </div>
+        </article>
       </div>
     </section>
   )
