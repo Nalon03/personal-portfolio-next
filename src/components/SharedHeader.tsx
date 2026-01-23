@@ -8,7 +8,7 @@ const SharedHeader: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['Home', 'About', 'Projects', 'Skills', 'Contact']
+      const sections = ['Home', 'About', 'Skills', 'Projects', 'Contact']
       const scrollPosition = window.scrollY + 200
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -55,7 +55,7 @@ const SharedHeader: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item, index) => (
+          {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
             <motion.button
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}

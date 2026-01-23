@@ -15,7 +15,7 @@ const ScrollablePortfolio: React.FC = () => {
   useEffect(() => {
     setMounted(true)
     const handleScroll = () => {
-      const sections = ['Home', 'About', 'Projects', 'Skills', 'Contact']
+      const sections = ['Home', 'About', 'Skills', 'Projects', 'Contact']
       const scrollPosition = window.scrollY + 200
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -74,7 +74,7 @@ const ScrollablePortfolio: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             style={{ opacity: 1 }}
           >
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item, index) => (
+            {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
               <motion.button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}

@@ -51,43 +51,33 @@ const skillCategories: SkillCategoryData[] = [
 
 const SkillsSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden about-gradient-bg">
+    <section className="skills-section relative min-h-screen flex flex-col overflow-hidden about-gradient-bg">
       <AnimatedBackground animated={false} />
 
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="skills-bg-decor absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="skills-bg-glow-cyan absolute top-20 left-10 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="skills-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="max-w-5xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
+      <div className="skills-content relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="skills-container max-w-5xl mx-auto">
+          <div className="skills-header text-center mb-12">
             <h1 
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white font-display 
+              className="skills-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display 
                          tracking-tight mb-4 opacity-0 animate-fade-in"
               style={{ animationFillMode: 'forwards' }}
             >
-              Technical <span className="gradient-text-cyan">Skills</span>
+              Technical <span className="skills-title-accent gradient-text-cyan">Skills</span>
             </h1>
-            <p 
-              className="text-lg sm:text-xl text-white/60 font-light max-w-lg mx-auto
-                         opacity-0 animate-fade-in-delay-1"
-              style={{ animationFillMode: 'forwards' }}
-            >
-              Technologies and tools I use to bring ideas to life.
-            </p>
-            {/* Decorative Line */}
+            
             <div 
-              className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-6 rounded-full
-                         opacity-0 animate-fade-in-delay-2"
-              style={{ animationFillMode: 'forwards' }}
+              className="skills-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full
+              opacity-0 animate-fade-in-delay-2"
+   style={{ animationFillMode: 'forwards' }}
             />
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-6">
             {skillCategories.map((category, index) => (
               <SkillCategory 
                 key={category.title} 

@@ -9,7 +9,7 @@ interface TypewriterTextProps {
   className?: string
   shouldStart: boolean
   onComplete?: () => void
-  showStatic?: boolean // Skip animation and show full text
+  showStatic?: boolean
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({ 
@@ -25,9 +25,8 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   const [hasStarted, setHasStarted] = useState(false)
   const indexRef = useRef(0)
 
-  // Effect to start typing when shouldStart becomes true
   useEffect(() => {
-    if (showStatic) return // Skip if showing static content
+    if (showStatic) return
     
     if (!shouldStart) {
       return
@@ -39,9 +38,8 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
     }
   }, [shouldStart, hasStarted, showStatic])
 
-  // Effect for typing animation
   useEffect(() => {
-    if (showStatic) return // Skip if showing static content
+    if (showStatic) return
     if (!hasStarted || isComplete) return
 
     const typeNextChar = () => {
@@ -58,7 +56,6 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
     return () => clearTimeout(timeout)
   }, [displayedText, hasStarted, isComplete, text, speed, onComplete, showStatic])
 
-  // If showStatic, display full text immediately
   if (showStatic) {
     return <span className={className}>{text}</span>
   }
@@ -108,34 +105,27 @@ const BulletItem: React.FC<BulletItemProps> = ({ text, speed, shouldStart, onCom
 
 const aboutContent = {
   intro: "I'm a modern full-stack developer who builds digital experiences that are clean, fast, and stable. I enjoy creating systems that feel effortless for users but are thoughtfully engineered underneath.",
-  stackTitle: "I work across the full stack:",
-  frontend: "Frontend: intuitive, responsive, detail-oriented interfaces",
-  backend: "Backend: stable, scalable, well-structured systems",
-  architecture: "Architecture: designing clear and maintainable flows between services and data",
   philosophy: "I value clarity over complexity, structure over shortcuts, and quality over hype.",
-  quote: "Think deeply. Build simply. Deliver confidently."
 }
 
 const typingSpeed = 12
 
 // Sequence steps
-type SequenceStep = 'idle' | 'intro' | 'stackTitle' | 'frontend' | 'backend' | 'architecture' | 'philosophy' | 'quote' | 'done'
+type SequenceStep = 'idle' | 'intro' | 'stackTitle'|'done'
 
-const stepOrder: SequenceStep[] = ['idle', 'intro', 'stackTitle', 'frontend', 'backend', 'architecture', 'philosophy', 'quote', 'done']
+const stepOrder: SequenceStep[] = ['idle', 'intro', 'stackTitle', 'done']
 
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const hasPlayedRef = useRef(false) // Track if animation has already played
+  const hasPlayedRef = useRef(false)
   const [currentStep, setCurrentStep] = useState<SequenceStep>('idle')
   const [animationComplete, setAnimationComplete] = useState(false)
 
-  // Move to next step in sequence
   const goToNextStep = useCallback(() => {
     setCurrentStep(prev => {
       const currentIndex = stepOrder.indexOf(prev)
       if (currentIndex < stepOrder.length - 1) {
         const nextStep = stepOrder[currentIndex + 1]
-        // Mark animation as complete when we reach 'done'
         if (nextStep === 'done') {
           setAnimationComplete(true)
         }
@@ -172,7 +162,6 @@ const AboutSection: React.FC = () => {
     return () => observer.disconnect()
   }, [])
 
-  // Determine if we should show static content (animation already played)
   const showStatic = animationComplete
 
   return (
@@ -189,13 +178,10 @@ const AboutSection: React.FC = () => {
         <div className="absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        
-        {/* HEADER */}
         <header className="text-center mb-8 md:mb-10">
           <h1 
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-display 
+            className="text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display 
                        tracking-tight mb-2 opacity-0 animate-fade-in"
             style={{ animationFillMode: 'forwards' }}
           >
@@ -224,9 +210,7 @@ const AboutSection: React.FC = () => {
             </h2>
           </div>
 
-          {/* Typewriter Content - Sequential (or Static if already played) */}
           <div className="space-y-5">
-            {/* Intro */}
             <p className="text-sm sm:text-base text-white/80 leading-relaxed font-sans min-h-[4rem]">
               <TypewriterText 
                 text={aboutContent.intro} 
@@ -236,78 +220,15 @@ const AboutSection: React.FC = () => {
                 showStatic={showStatic}
               />
             </p>
-
-            {/* Stack Title */}
-            <div className="space-y-2 text-white/70 text-sm leading-relaxed font-sans">
-              <p className="font-medium text-white/90 min-h-[1.5rem]">
-                <TypewriterText 
-                  text={aboutContent.stackTitle} 
-                  speed={typingSpeed}
-                  shouldStart={stepOrder.indexOf(currentStep) >= stepOrder.indexOf('stackTitle')}
-                  onComplete={goToNextStep}
-                  showStatic={showStatic}
-                />
-              </p>
-
-              {/* Bullet Items */}
-              <ul className="space-y-2 ml-1">
-                <BulletItem 
-                  text={aboutContent.frontend}
-                  speed={typingSpeed}
-                  shouldStart={stepOrder.indexOf(currentStep) >= stepOrder.indexOf('frontend')}
-                  onComplete={goToNextStep}
-                  showStatic={showStatic}
-                />
-                <BulletItem 
-                  text={aboutContent.backend}
-                  speed={typingSpeed}
-                  shouldStart={stepOrder.indexOf(currentStep) >= stepOrder.indexOf('backend')}
-                  onComplete={goToNextStep}
-                  showStatic={showStatic}
-                />
-                <BulletItem 
-                  text={aboutContent.architecture}
-                  speed={typingSpeed}
-                  shouldStart={stepOrder.indexOf(currentStep) >= stepOrder.indexOf('architecture')}
-                  onComplete={goToNextStep}
-                  showStatic={showStatic}
-                />
-              </ul>
-            </div>
-
-            {/* Philosophy */}
-            <p className="text-sm sm:text-base text-white/80 leading-relaxed font-sans min-h-[1.5rem]">
-              <TypewriterText 
-                text={aboutContent.philosophy} 
-                speed={typingSpeed}
-                shouldStart={stepOrder.indexOf(currentStep) >= stepOrder.indexOf('philosophy')}
-                onComplete={goToNextStep}
-                showStatic={showStatic}
-              />
-            </p>
-
-            {/* Quote */}
-            <blockquote className="border-l-2 border-cyan-400/50 pl-3 py-1.5 mt-4">
-              <p className="text-base text-white/90 font-medium italic font-sans min-h-[1.5rem]">
-                <TypewriterText 
-                  text={aboutContent.quote} 
-                  speed={typingSpeed}
-                  shouldStart={stepOrder.indexOf(currentStep) >= stepOrder.indexOf('quote')}
-                  onComplete={goToNextStep}
-                  showStatic={showStatic}
-                />
-              </p>
-            </blockquote>
+           
           </div>
         </div>
 
-        {/* Section Divider */}
-        <div className="section-divider w-full max-w-md mx-auto mb-12" />
+        <div className="section-divider w-full max-w-md mx-auto mb-4" />
 
-        {/* ENGINEERING VALUES */}
         <div className="text-center">
           <h2 
-            className="text-xl sm:text-2xl font-bold text-white font-display mb-4
+            className="text-xl sm:text-1xl font-bold text-white font-display mb-4
                        opacity-0 animate-slide-up"
             style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}
           >

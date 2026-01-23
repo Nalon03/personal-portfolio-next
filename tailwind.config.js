@@ -60,6 +60,7 @@ module.exports = {
         'gradient-flow': 'gradientFlow 4s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        'scroll-left': 'scrollLeft 30s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -102,6 +103,10 @@ module.exports = {
         glowPulse: {
           '0%, 100%': { boxShadow: '0 0 20px rgba(6, 182, 212, 0.3), 0 0 40px rgba(6, 182, 212, 0.1)' },
           '50%': { boxShadow: '0 0 30px rgba(6, 182, 212, 0.5), 0 0 60px rgba(6, 182, 212, 0.2)' },
+        },
+        scrollLeft: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
     },
