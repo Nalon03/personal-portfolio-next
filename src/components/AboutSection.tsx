@@ -189,10 +189,10 @@ const AboutSection: React.FC = () => {
         </header>
 
         <div 
-          className="about-card glass-card rounded-xl p-6 md:p-8 mb-12 opacity-0 animate-slide-up"
+          className="about-card glass-card rounded-xl p-6 md:p-8 mb-4 opacity-0 animate-slide-up"
           style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}
         >
-          <div className="about-greeting mb-6 text-center">
+          <div className="about-greeting mb-4 text-center">
             <span className="about-badge inline-block px-2.5 py-1 text-xs font-medium text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full mb-3 font-sans">
               Full-Stack Developer
             </span>
