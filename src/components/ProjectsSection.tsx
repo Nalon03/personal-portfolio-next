@@ -318,30 +318,31 @@ const ProjectsSection: React.FC = () => {
     >
       <AnimatedBackground animated={false} />
 
-      <div className="projects-content relative z-10 flex-1 px-4 sm:px-6 lg:px-20 py-16 md:py-24">
-        <div className="projects-container max-w-7xl mx-auto">
-          <motion.header
-            className="projects-header text-center mb-10"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h1 
-              id="projects-heading"
-              className="projects-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display tracking-tight mb-2"
+      <div className="projects-content relative z-10 flex-1 py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="projects-container max-w-7xl mx-auto">
+            <motion.header
+              className="projects-header text-center mb-10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              My <span className="projects-title-accent gradient-text-cyan">Projects</span>
-            </h1>
-            <div 
-              className="projects-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
-              aria-hidden="true"
-              role="presentation"
-            />
-          </motion.header>
+              <h1 
+                id="projects-heading"
+                className="projects-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display tracking-tight mb-2"
+              >
+                My <span className="projects-title-accent gradient-text-cyan">Projects</span>
+              </h1>
+              <div 
+                className="projects-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
+                aria-hidden="true"
+                role="presentation"
+              />
+            </motion.header>
 
           <div className="projects-carousel-outer relative">
             <motion.button 
-              className="left-scroll-indicators absolute -left-4 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
+              className="left-scroll-indicators absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               onClick={() => scrollCarousel('left')}
@@ -380,7 +381,7 @@ const ProjectsSection: React.FC = () => {
               </motion.div>
             </motion.button>
             <motion.button 
-              className="right-scroll-indicators absolute -right-4 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
+              className="right-scroll-indicators absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 cursor-pointer"
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               onClick={() => scrollCarousel('right')}
@@ -434,7 +435,7 @@ const ProjectsSection: React.FC = () => {
               
               <div
               ref={trackRef}
-              className="projects-carousel-track flex gap-6 py-4"
+              className="projects-carousel-track flex gap-4 sm:gap-6 py-4"
               role="list"
               aria-label="Project cards"
             >
@@ -452,7 +453,7 @@ const ProjectsSection: React.FC = () => {
                   aria-label={`${project.title} - ${project.description}`}
                 >
                   <div 
-                    className="project-image h-[110px] bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center relative overflow-hidden"
+                    className="project-image h-[96px] sm:h-[110px] bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center relative overflow-hidden"
                     aria-hidden="true"
                   >
                     <div className="project-icon text-4xl text-cyan-400 transition-transform duration-300 group-hover:scale-110">🚀</div>
@@ -470,14 +471,14 @@ const ProjectsSection: React.FC = () => {
                       {project.tech.slice(0, 3).map((tech) => (
                         <li
                           key={tech}
-                          className="project-tech-tag px-2.5 py-1 text-[10px] font-semibold text-cyan-300 bg-cyan-400/10 border border-cyan-400/20 rounded-md font-sans"
+                          className="project-tech-tag px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold text-cyan-300 bg-cyan-400/10 border border-cyan-400/20 rounded-md font-sans"
                         >
                           {tech}
                         </li>
                       ))}
                       {project.tech.length > 3 && (
                         <li 
-                          className="project-tech-tag px-2.5 py-1 text-[10px] font-semibold text-white/50 bg-white/5 border border-white/10 rounded-md font-sans"
+                          className="project-tech-tag px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold text-white/50 bg-white/5 border border-white/10 rounded-md font-sans"
                           aria-label={`${project.tech.length - 3} more technologies`}
                         >
                           +{project.tech.length - 3}
@@ -489,7 +490,7 @@ const ProjectsSection: React.FC = () => {
                       <a
                         href={project.liveUrl}
                         onClick={(e) => e.stopPropagation()}
-                        className="project-btn-demo flex-1 px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/50 text-cyan-400 text-[11px] font-medium text-center rounded-lg 
+                        className="project-btn-demo flex-1 px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/50 text-cyan-400 text-[10px] sm:text-[11px] font-medium text-center rounded-lg 
                           hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400 
                           transition-all duration-300 font-sans focus-ring"
                         aria-label={`View live demo of ${project.title}`}
@@ -501,7 +502,7 @@ const ProjectsSection: React.FC = () => {
                       <a
                         href={project.githubUrl}
                         onClick={(e) => e.stopPropagation()}
-                        className="project-btn-github flex-1 px-4 py-2 bg-white/5 border border-white/20 text-white/80 text-[11px] font-medium text-center rounded-lg 
+                        className="project-btn-github flex-1 px-4 py-2 bg-white/5 border border-white/20 text-white/80 text-[10px] sm:text-[11px] font-medium text-center rounded-lg 
                           hover:bg-white/10 hover:border-white/40 hover:text-white
                           transition-all duration-300 font-sans focus-ring"
                         aria-label={`View ${project.title} source code on GitHub`}
@@ -544,26 +545,27 @@ const ProjectsSection: React.FC = () => {
             </motion.div>
           </div>
 
-          <motion.aside
-            className="projects-cta text-center mt-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            aria-label="Call to action"
-          >
-            <h2 className="projects-cta-title text-xl sm:text-2xl font-bold text-white font-display tracking-tight mb-4">Interested in working together?</h2>
-            <p className="projects-cta-text text-sm sm:text-base text-white/80 leading-relaxed font-sans mb-8">Let&apos;s discuss your next project and bring your ideas to life.</p>
-            <motion.button
-              className="projects-cta-btn px-5 py-2 bg-transparent border border-cyan-400/80 text-cyan-400 text-xs font-medium rounded-md hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 font-sans focus-ring"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={scrollToContact}
-              aria-label="Go to contact section to get in touch"
-              type="button"
+            <motion.aside
+              className="projects-cta text-center mt-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              aria-label="Call to action"
             >
-              Get In Touch
-            </motion.button>
-          </motion.aside>
+              <h2 className="projects-cta-title text-xl sm:text-2xl font-bold text-white font-display tracking-tight mb-4">Interested in working together?</h2>
+              <p className="projects-cta-text text-sm sm:text-base text-white/80 leading-relaxed font-sans mb-8">Let&apos;s discuss your next project and bring your ideas to life.</p>
+              <motion.button
+                className="projects-cta-btn px-5 py-2 bg-transparent border border-cyan-400/80 text-cyan-400 text-xs font-medium rounded-md hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 font-sans focus-ring"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={scrollToContact}
+                aria-label="Go to contact section to get in touch"
+                type="button"
+              >
+                Get In Touch
+              </motion.button>
+            </motion.aside>
+          </div>
         </div>
       </div>
 

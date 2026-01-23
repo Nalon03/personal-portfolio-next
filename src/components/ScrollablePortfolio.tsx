@@ -88,107 +88,109 @@ const ScrollablePortfolio: React.FC = () => {
   }
 
   return (
-    <div className="relative" style={{ minHeight: '100vh', background: '#08203A' }}>
+    <div className="relative overflow-x-hidden" style={{ minHeight: '100vh', background: '#08203A' }}>
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-50 w-full py-6 px-8 bg-black/20 backdrop-blur-sm"
+        className="fixed top-0 left-0 right-0 z-50 w-full py-4 sm:py-6 bg-black/20 backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         style={{ opacity: 1 }}
         role="banner"
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <motion.button
-            className="text-xl font-bold text-white bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent cursor-pointer focus-ring"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            onClick={() => scrollToSection('home')}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                scrollToSection('home')
-              }
-            }}
-            style={{ opacity: 1 }}
-            aria-label="Grace Yaa Nalon - Go to home section"
-            type="button"
-            tabIndex={0}
-          >
-            GYN
-          </motion.button>
-          
-          <motion.nav 
-            className="hidden md:flex space-x-8"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            style={{ opacity: 1 }}
-            role="navigation"
-            aria-label="Main navigation"
-          >
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item}
-                ref={(el) => { navButtonRefs.current[index] = el }}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                onKeyDown={(e) => handleNavKeyDown(e, index)}
-                className={`font-medium transition-colors duration-300 relative group focus-ring ${
-                  activeSection === item 
-                    ? 'text-white' 
-                    : 'text-white/80 hover:text-white'
-                }`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                whileHover={{ y: -2 }}
-                aria-label={`Navigate to ${item} section`}
-                aria-current={activeSection === item ? 'page' : undefined}
-                type="button"
-                tabIndex={0}
-              >
-                {item}
-                {activeSection === item && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-cyan-400"
-                    layoutId="activeLink"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                    aria-hidden="true"
-                  />
-                )}
-                {activeSection !== item && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"
-                    whileHover={{ width: "100%" }}
-                    aria-hidden="true"
-                  />
-                )}
-              </motion.button>
-            ))}
-          </motion.nav>
-          
-          <motion.button
-            className="md:hidden text-white p-2 focus-ring"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-            aria-controls="mobile-navigation"
-            type="button"
-          >
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-              aria-hidden="true"
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <motion.button
+              className="text-xl font-bold text-white bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent cursor-pointer focus-ring"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              onClick={() => scrollToSection('home')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  scrollToSection('home')
+                }
+              }}
+              style={{ opacity: 1 }}
+              aria-label="Grace Yaa Nalon - Go to home section"
+              type="button"
+              tabIndex={0}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </motion.button>
+              GYN
+            </motion.button>
+            
+            <motion.nav 
+              className="hidden md:flex space-x-8"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              style={{ opacity: 1 }}
+              role="navigation"
+              aria-label="Main navigation"
+            >
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item}
+                  ref={(el) => { navButtonRefs.current[index] = el }}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  onKeyDown={(e) => handleNavKeyDown(e, index)}
+                  className={`font-medium transition-colors duration-300 relative group focus-ring ${
+                    activeSection === item 
+                      ? 'text-white' 
+                      : 'text-white/80 hover:text-white'
+                  }`}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                  aria-label={`Navigate to ${item} section`}
+                  aria-current={activeSection === item ? 'page' : undefined}
+                  type="button"
+                  tabIndex={0}
+                >
+                  {item}
+                  {activeSection === item && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 w-full h-0.5 bg-cyan-400"
+                      layoutId="activeLink"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 0.3 }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  {activeSection !== item && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"
+                      whileHover={{ width: "100%" }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </motion.button>
+              ))}
+            </motion.nav>
+            
+            <motion.button
+              className="md:hidden text-white p-2 focus-ring"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              aria-controls="mobile-navigation"
+              type="button"
+            >
+              <svg 
+                className="w-6 h-6" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </motion.button>
+          </div>
         </div>
         
         <motion.div

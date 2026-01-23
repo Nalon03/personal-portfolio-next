@@ -132,83 +132,84 @@ const ContactSection: React.FC = () => {
         <div className="contact-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="contact-content relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="contact-container max-w-5xl mx-auto">
-          <motion.header
-            className="contact-header text-center mb-10"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h1 
-              id="contact-heading"
-              className="contact-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display tracking-tight mb-2"
+      <div className="contact-content relative z-10 flex-1 py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="contact-container max-w-5xl mx-auto">
+            <motion.header
+              className="contact-header text-center mb-10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Get In <span className="contact-title-accent gradient-text-cyan">Touch</span>
-            </h1>
-            <div 
-              className="contact-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full"
-              aria-hidden="true"
-              role="presentation"
-            />
-          </motion.header>
+              <h1 
+                id="contact-heading"
+                className="contact-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display tracking-tight mb-2"
+              >
+                Get In <span className="contact-title-accent gradient-text-cyan">Touch</span>
+              </h1>
+              <div 
+                className="contact-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full"
+                aria-hidden="true"
+                role="presentation"
+              />
+            </motion.header>
 
-          <div className="contact-grid grid lg:grid-cols-2 gap-8">
-            <motion.aside
-              className="contact-info-wrapper space-y-6"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              aria-label="Contact information"
-            >
-              <nav 
-                className="contact-info-list space-y-4"
-                aria-label="Contact methods"
+            <div className="contact-grid grid lg:grid-cols-2 gap-8">
+              <motion.aside
+                className="contact-info-wrapper space-y-6 w-full max-w-md lg:max-w-none mx-auto lg:mx-0"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                aria-label="Contact information"
               >
-                {contactInfo.map((item, index) => (
-                  <motion.a
-                    key={item.title}
-                    href={item.link}
-                    className="contact-info-card flex items-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 group focus-ring"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                    aria-label={item.ariaLabel}
-                    target={item.link.startsWith('http') ? '_blank' : undefined}
-                    rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  >
-                    <div className="contact-info-icon text-xl mr-4" aria-hidden="true" role="img">{item.icon}</div>
-                    <div className="contact-info-details">
-                      <h3 className="contact-info-title text-sm font-semibold text-white font-sans">{item.title}</h3>
-                      <p className="contact-info-value text-xs sm:text-sm text-white/70 group-hover:text-cyan-400 transition-colors duration-300 font-sans">
-                        {item.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                ))}
-              </nav>
-            </motion.aside>
+                <nav 
+                  className="contact-info-list space-y-4"
+                  aria-label="Contact methods"
+                >
+                  {contactInfo.map((item, index) => (
+                    <motion.a
+                      key={item.title}
+                      href={item.link}
+                      className="contact-info-card flex items-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 group focus-ring"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                      whileHover={{ scale: 1.02 }}
+                      aria-label={item.ariaLabel}
+                      target={item.link.startsWith('http') ? '_blank' : undefined}
+                      rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >
+                      <div className="contact-info-icon text-xl mr-4" aria-hidden="true" role="img">{item.icon}</div>
+                      <div className="contact-info-details min-w-0">
+                        <h3 className="contact-info-title text-sm font-semibold text-white font-sans">{item.title}</h3>
+                        <p className="contact-info-value text-xs sm:text-sm text-white/70 group-hover:text-cyan-400 transition-colors duration-300 font-sans break-words">
+                          {item.value}
+                        </p>
+                      </div>
+                    </motion.a>
+                  ))}
+                </nav>
+              </motion.aside>
 
-            <motion.div
-              className="contact-form-wrapper glass-card rounded-xl p-6 md:p-8"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <h2 
-                id="form-heading"
-                className="contact-form-title text-xl sm:text-2xl font-bold text-white font-display tracking-tight mb-2"
+              <motion.div
+                className="contact-form-wrapper glass-card rounded-xl p-6 md:p-8 w-full max-w-md lg:max-w-none mx-auto lg:mx-0"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
-                Send me a message
-              </h2>
-              <p 
-                id={formDescriptionId}
-                className="text-sm text-white/60 mb-6 font-sans"
-              >
-                Fill out the form below and I&apos;ll get back to you as soon as possible.
-              </p>
-              
+                <h2 
+                  id="form-heading"
+                  className="contact-form-title text-xl sm:text-2xl font-bold text-white font-display tracking-tight mb-2"
+                >
+                  Send me a message
+                </h2>
+                <p 
+                  id={formDescriptionId}
+                  className="text-sm text-white/60 mb-6 font-sans"
+                >
+                  Fill out the form below and I&apos;ll get back to you as soon as possible.
+                </p>
+
               <form 
                 className="contact-form space-y-5"
                 onSubmit={handleSubmit}
@@ -382,6 +383,7 @@ const ContactSection: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
     </section>
   )
 }

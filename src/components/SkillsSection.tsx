@@ -62,39 +62,41 @@ const SkillsSection: React.FC = () => {
         <div className="skills-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="skills-content relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="skills-container max-w-5xl mx-auto">
-          <header className="skills-header text-center mb-10">
-            <h1 
-              id="skills-heading"
-              className="skills-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display 
-                         tracking-tight mb-4 opacity-0 animate-fade-in"
-              style={{ animationFillMode: 'forwards' }}
-            >
-              Technical <span className="skills-title-accent gradient-text-cyan">Skills</span>
-            </h1>
-            
-            <div 
-              className="skills-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full
-              opacity-0 animate-fade-in-delay-2"
-              style={{ animationFillMode: 'forwards' }}
-              aria-hidden="true"
-              role="presentation"
-            />
-          </header>
-
-          <div 
-            className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-6"
-            role="list"
-            aria-label="Skill categories"
-          >
-            {skillCategories.map((category, index) => (
-              <SkillCategory 
-                key={category.title} 
-                category={category} 
-                delay={300 + (index * 100)}
+      <div className="skills-content relative z-10 flex-1 py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="skills-container max-w-5xl mx-auto">
+            <header className="skills-header text-center mb-10">
+              <h1 
+                id="skills-heading"
+                className="skills-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display 
+                           tracking-tight mb-4 opacity-0 animate-fade-in"
+                style={{ animationFillMode: 'forwards' }}
+              >
+                Technical <span className="skills-title-accent gradient-text-cyan">Skills</span>
+              </h1>
+              
+              <div 
+                className="skills-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full
+                opacity-0 animate-fade-in-delay-2"
+                style={{ animationFillMode: 'forwards' }}
+                aria-hidden="true"
+                role="presentation"
               />
-            ))}
+            </header>
+
+            <div 
+              className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-6"
+              role="list"
+              aria-label="Skill categories"
+            >
+              {skillCategories.map((category, index) => (
+                <SkillCategory 
+                  key={category.title} 
+                  category={category} 
+                  delay={300 + (index * 100)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
