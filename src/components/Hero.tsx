@@ -36,14 +36,57 @@ const Hero: React.FC = () => {
       <AnimatedBackground />
       
       <div className="hero-content relative z-10 flex items-center justify-center h-full my-24">
-        <motion.article
-          className="hero-card relative w-[629px] h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center px-6 py-6"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          style={{ opacity: 1 }}
-          aria-label="Introduction card"
-        >
+        <div className="hero-card-wrapper relative flex items-center justify-center">
+          <motion.div
+            className="hero-arrow hero-arrow-left hidden md:flex items-center justify-center absolute -left-8 lg:-left-16 top-1/2 -translate-y-1/2 pointer-events-none"
+            animate={{ y: [-6, 0, -6], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            aria-hidden="true"
+          >
+            <svg
+              className="w-4 h-32 lg:h-44 text-cyan-400/80 drop-shadow-[0_0_10px_rgba(6,182,212,0.45)]"
+              viewBox="0 0 16 140"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="8" y1="4" x2="8" y2="126" />
+              <path d="M2 118l6 10 6-10" />
+            </svg>
+          </motion.div>
+
+          <motion.div
+            className="hero-arrow hero-arrow-right hidden md:flex items-center justify-center absolute -right-8 lg:-right-16 top-1/2 -translate-y-1/2 pointer-events-none"
+            animate={{ y: [6, 0, 6], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            aria-hidden="true"
+          >
+            <svg
+              className="w-4 h-32 lg:h-44 text-cyan-400/80 drop-shadow-[0_0_10px_rgba(6,182,212,0.45)]"
+              viewBox="0 0 16 140"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="8" y1="4" x2="8" y2="126" />
+              <path d="M2 118l6 10 6-10" />
+            </svg>
+          </motion.div>
+
+          <motion.article
+            className="hero-card relative w-[629px] h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center px-6 py-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            style={{ opacity: 1 }}
+            aria-label="Introduction card"
+          >
           <div className="hero-intro flex flex-col items-center text-center space-y-5 mb-2">
             <motion.figure
               className="hero-avatar w-36 h-36 md:w-34 md:h-34 rounded-full overflow-hidden border-2 border-white shadow-2xl flex items-center justify-center bg-gray-100"
@@ -133,7 +176,8 @@ const Hero: React.FC = () => {
               Get in Touch
             </motion.button>
           </motion.div>
-        </motion.article>
+          </motion.article>
+        </div>
       </div>
     </section>
   )
