@@ -166,6 +166,14 @@ const ProjectsSection: React.FC = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        const activeElement = document.activeElement as HTMLElement
+        if (activeElement && activeElement.tagName === 'BUTTON') {
+          activeElement.blur()
+        }
+        return
+      }
+      
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return
       
       if (isHovered && trackRef.current) {
