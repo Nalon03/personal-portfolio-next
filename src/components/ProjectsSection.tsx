@@ -14,6 +14,7 @@ const ProjectsSection: React.FC = () => {
   const currentSpeedRef = useRef(0.5)
   const targetSpeedRef = useRef(0.5)
   const animationRef = useRef<number>()
+  const setWidthRef = useRef(0)
   
   const BASE_SPEED = 0.5
 
@@ -74,6 +75,42 @@ const ProjectsSection: React.FC = () => {
     },
   ]
 
+  const updateSetWidth = useCallback(() => {
+    if (!trackRef.current) return
+    const children = trackRef.current.children
+    if (children.length < projects.length + 1) return
+
+    const firstItem = children[0] as HTMLElement
+    const secondSetFirstItem = children[projects.length] as HTMLElement
+    const width = secondSetFirstItem.offsetLeft - firstItem.offsetLeft
+
+    if (width > 0) {
+      setWidthRef.current = width
+    }
+  }, [projects.length])
+
+  const getSingleSetWidth = useCallback(() => {
+    if (setWidthRef.current > 0) {
+      return setWidthRef.current
+    }
+
+    if (!trackRef.current) return 0
+
+    const children = trackRef.current.children
+    if (children.length >= projects.length + 1) {
+      const firstItem = children[0] as HTMLElement
+      const secondSetFirstItem = children[projects.length] as HTMLElement
+      const width = secondSetFirstItem.offsetLeft - firstItem.offsetLeft
+
+      if (width > 0) {
+        setWidthRef.current = width
+        return width
+      }
+    }
+
+    return trackRef.current.scrollWidth / 3
+  }, [projects.length])
+
   useEffect(() => {
     const handleVisibilityChange = () => {
       setIsPageVisible(!document.hidden)
@@ -85,6 +122,18 @@ const ProjectsSection: React.FC = () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
   }, [])
+
+  useEffect(() => {
+    updateSetWidth()
+    const handleResize = () => updateSetWidth()
+    window.addEventListener('resize', handleResize)
+    const raf = requestAnimationFrame(updateSetWidth)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      cancelAnimationFrame(raf)
+    }
+  }, [updateSetWidth])
 
   useEffect(() => {
     targetSpeedRef.current = isHovered ? 0 : BASE_SPEED
@@ -101,16 +150,18 @@ const ProjectsSection: React.FC = () => {
 
     positionRef.current += currentSpeedRef.current
 
-    const trackWidth = trackRef.current.scrollWidth / 2
-
-    if (positionRef.current >= trackWidth) {
-      positionRef.current = 0
+    const singleSetWidth = getSingleSetWidth()
+    if (!singleSetWidth) {
+      animationRef.current = requestAnimationFrame(animate)
+      return
     }
+
+    positionRef.current = positionRef.current % singleSetWidth
 
     trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
 
     animationRef.current = requestAnimationFrame(animate)
-  }, [isPageVisible])
+  }, [getSingleSetWidth, isPageVisible])
 
   useEffect(() => {
     animationRef.current = requestAnimationFrame(animate)
@@ -144,15 +195,12 @@ const ProjectsSection: React.FC = () => {
       
       const scrollAmount = e.deltaX
       
-      const trackWidth = trackRef.current.scrollWidth / 2
+      const singleSetWidth = getSingleSetWidth()
+      if (!singleSetWidth) return
       
       positionRef.current += scrollAmount * 0.5
       
-      if (positionRef.current < 0) {
-        positionRef.current = trackWidth + positionRef.current
-      } else if (positionRef.current >= trackWidth) {
-        positionRef.current = positionRef.current - trackWidth
-      }
+      positionRef.current = ((positionRef.current % singleSetWidth) + singleSetWidth) % singleSetWidth
     }
 
     wrapper.addEventListener('wheel', handleWheel, { passive: false })
@@ -160,7 +208,7 @@ const ProjectsSection: React.FC = () => {
     return () => {
       wrapper.removeEventListener('wheel', handleWheel)
     }
-  }, [isHovered])
+  }, [getSingleSetWidth, isHovered])
 
   const headerIndexRef = useRef(0)
 
@@ -181,16 +229,13 @@ const ProjectsSection: React.FC = () => {
         e.stopPropagation()
         
         const SCROLL_AMOUNT = 150
-        const trackWidth = trackRef.current.scrollWidth / 2
+        const singleSetWidth = getSingleSetWidth()
+        if (!singleSetWidth) return
         const direction = e.key === 'ArrowRight' ? 1 : -1
         
         positionRef.current += SCROLL_AMOUNT * direction
         
-        if (positionRef.current < 0) {
-          positionRef.current = trackWidth + positionRef.current
-        } else if (positionRef.current >= trackWidth) {
-          positionRef.current = positionRef.current - trackWidth
-        }
+        positionRef.current = ((positionRef.current % singleSetWidth) + singleSetWidth) % singleSetWidth
         
         trackRef.current.style.transition = 'transform 0.3s ease-out'
         trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
@@ -226,9 +271,9 @@ const ProjectsSection: React.FC = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isHovered])
+  }, [getSingleSetWidth, isHovered])
 
-  const duplicatedProjects = [...projects, ...projects]
+  const duplicatedProjects = [...projects, ...projects, ...projects]
 
   const handleCardKeyDown = (e: React.KeyboardEvent, url: string) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -241,16 +286,13 @@ const ProjectsSection: React.FC = () => {
     if (!trackRef.current) return
     
     const SCROLL_AMOUNT = 300
-    const trackWidth = trackRef.current.scrollWidth / 2
+    const singleSetWidth = getSingleSetWidth()
+    if (!singleSetWidth) return
     const scrollDirection = direction === 'right' ? 1 : -1
     
     positionRef.current += SCROLL_AMOUNT * scrollDirection
     
-    if (positionRef.current < 0) {
-      positionRef.current = trackWidth + positionRef.current
-    } else if (positionRef.current >= trackWidth) {
-      positionRef.current = positionRef.current - trackWidth
-    }
+    positionRef.current = ((positionRef.current % singleSetWidth) + singleSetWidth) % singleSetWidth
     
     trackRef.current.style.transition = 'transform 0.4s ease-out'
     trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
