@@ -126,9 +126,9 @@ const Hero: React.FC = () => {
               </motion.h1>
               
               <motion.div
-                className="hero-divider w-16 h-0.5 bg-gradient-to-r from-red-400 to-red-600"
+                className="hero-divider w-14 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mx-auto rounded-full"
                 initial={{ width: 0 }}
-                animate={{ width: "4rem" }}
+                animate={{ width: "3.5rem" }}
                 transition={{ duration: 1, delay: 1.0 }}
                 aria-hidden="true"
                 role="presentation"

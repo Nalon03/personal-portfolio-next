@@ -187,7 +187,7 @@ const AboutSection: React.FC = () => {
                 About <span className="about-title-accent gradient-text-cyan">Me</span>
               </h1>
               <div
-                className="about-divider w-16 h-1 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-4 rounded-full opacity-0 animate-fade-in-delay-2"
+                className="about-divider w-14 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
                 style={{ animationFillMode: 'forwards' }}
                 aria-hidden="true"
                 role="presentation"
@@ -252,7 +252,7 @@ const AboutSection: React.FC = () => {
                   I see clean engineering as a craft, not a rush. I focus on building systems that people can understand, maintain, and trust over time. For me, every line of code should earn its place, and every part of a system should be there because it actually matters.
                 </p>
 
-                <div className="about-values-divider w-12 h-1 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-8 rounded-full" aria-hidden="true" role="presentation" />
+                <div className="about-values-divider w-14 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-8 rounded-full" aria-hidden="true" role="presentation" />
               </div>
             </article>
           </div>
