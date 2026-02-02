@@ -27,6 +27,8 @@ export const useIntersectionObserver = ({
   }
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const hasIOSupport = !!window.IntersectionObserver
 
     if (!hasIOSupport || frozen || !node) return

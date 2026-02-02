@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --focus-ring-color: #22d3ee;
+  --focus-ring-offset: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,8 +18,128 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #08203A;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ========================================
+   ACCESSIBILITY - Skip Links
+   ======================================== */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: var(--focus-ring-color);
+  color: #0a0a0a;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+}
+
+/* ========================================
+   ACCESSIBILITY - Focus Styles
+   ======================================== */
+
+/* Global focus visible styles - ensures keyboard users see focus */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
+/* Remove default outline for mouse users, keep for keyboard */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Custom focus ring utility class */
+.focus-ring {
+  transition: outline-offset 0.15s ease, box-shadow 0.15s ease;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.2);
+}
+
+/* Button focus styles */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.25);
+}
+
+/* Link focus styles */
+a:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Form input focus styles */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 0;
+  border-color: var(--focus-ring-color) !important;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+}
+
+/* Card focus styles for interactive cards */
+.interactive-card:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 4px;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+/* Navigation item focus */
+nav button:focus-visible,
+nav a:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ========================================
+   ACCESSIBILITY - Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @layer utilities {
@@ -31,11 +153,31 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .gradient-text-cyan {
+    background: linear-gradient(135deg, #06b6d4, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
   
   .glass-effect {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(6, 182, 212, 0.2);
+    transform: translateY(-2px);
   }
   
   .clip-path-hexagon {
@@ -58,6 +200,56 @@ body {
       background-position: 0% 50%;
     }
   }
+
+  /* About Page Specific Styles */
+  .about-gradient-bg {
+    background: radial-gradient(ellipse at 20% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                #08203A;
+  }
+
+  .hologram-container {
+    position: relative;
+  }
+
+  .hologram-container::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.1));
+    z-index: -1;
+    opacity: 0.6;
+    animation: glow-rotate 6s linear infinite;
+  }
+
+  @keyframes glow-rotate {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.4; }
+  }
+
+  .skill-chip {
+    @apply px-3 py-2 rounded-lg text-sm font-medium text-white/90 
+           bg-white/[0.04] border border-white/[0.08]
+           transition-all duration-300 ease-out
+           hover:bg-white/[0.08] hover:border-cyan-400/30 hover:text-white;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(248, 113, 113, 0.6), transparent);
+  }
+
+  /* Animation initial states */
+  .animate-on-scroll {
+    opacity: 0;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+  }
+
 }
 
 /* Smooth scrolling */
@@ -65,20 +257,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - dark theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0ea5e9;
+  background: linear-gradient(180deg, #0ea5e9, #06b6d4);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: linear-gradient(180deg, #0284c7, #0891b2);
 }

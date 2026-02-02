@@ -8,8 +8,8 @@ const SharedHeader: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['Home', 'About', 'Projects', 'Skills', 'Contact']
-      const scrollPosition = window.scrollY + 200 // Offset for header
+      const sections = ['Home', 'About', 'Skills', 'Projects', 'Contact']
+      const scrollPosition = window.scrollY + 200
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i].toLowerCase())
@@ -39,7 +39,6 @@ const SharedHeader: React.FC = () => {
       transition={{ duration: 0.8 }}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo/Name */}
         <motion.div
           className="text-xl font-bold text-white bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent cursor-pointer"
           initial={{ opacity: 0, x: -20 }}
@@ -50,14 +49,13 @@ const SharedHeader: React.FC = () => {
           GYN
         </motion.div>
         
-        {/* Navigation Menu */}
         <motion.nav 
           className="hidden md:flex space-x-8"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item, index) => (
+          {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
             <motion.button
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
@@ -91,7 +89,6 @@ const SharedHeader: React.FC = () => {
           ))}
         </motion.nav>
         
-        {/* Mobile Menu Button */}
         <motion.button
           className="md:hidden text-white p-2"
           initial={{ opacity: 0 }}
@@ -104,7 +101,6 @@ const SharedHeader: React.FC = () => {
         </motion.button>
       </div>
       
-      {/* Header Bottom Line */}
       <motion.div
         className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent"
         initial={{ width: 0 }}

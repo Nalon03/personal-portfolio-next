@@ -23,7 +23,6 @@ src/
 ├── components/          # Reusable UI components
 │   ├── Button.tsx      # Button component
 │   ├── Card.tsx        # Card component
-│   ├── Header.tsx      # Header component
 │   └── index.ts        # Component exports
 ├── pages/              # Additional pages (if needed)
 │   ├── index.tsx       # Home page

@@ -9,8 +9,7 @@ interface AnimatedBackgroundProps {
 
 const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true }) => {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Background - Animated or Static */}
+    <div className="absolute inset-0 min-h-screen">
       {animated ? (
         <motion.div 
           className="absolute inset-0"
@@ -36,9 +35,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
         />
       )}
       
-      {/* Subtle Coding Pattern - Only in white spaces around rectangle */}
       <div className="absolute inset-0 opacity-30">
-        {/* Code-like pattern using CSS */}
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 1%, transparent 2%),
@@ -50,7 +47,6 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
           backgroundPosition: '0 0, 0 0, 0 0, 0 0'
         }} />
         
-        {/* Binary-like dots pattern */}
         <div className="absolute inset-0" style={{
           backgroundImage: `
             radial-gradient(circle at 2px 2px, rgba(255,255,255,0.08) 0.5px, transparent 0.5px),
@@ -60,7 +56,6 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ animated = true
           backgroundSize: '12px 12px, 8px 8px, 16px 16px'
         }} />
         
-        {/* Circuit-like lines */}
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 1px, transparent 1px),

@@ -11,12 +11,18 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@react-three/drei": "^9.88.17",
+    "@react-three/fiber": "^8.15.19",
     "@tanstack/react-query": "^5.8.4",
     "axios": "^1.6.2",
+    "firebase": "^12.8.0",
     "framer-motion": "^12.23.13",
     "next": "14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "resend": "^6.8.0",
+    "styled-jsx": "^5.1.7",
+    "three": "^0.160.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
@@ -25,6 +31,7 @@
     "@types/node": "^20.8.10",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/three": "^0.160.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.53.0",
     "eslint-config-next": "14.0.0",
@@ -35,9 +42,3 @@
     "typescript": "^5.2.2"
   }
 }
-
-
-
-
-
-
