@@ -392,7 +392,7 @@ const ProjectsSection: React.FC = () => {
     >
       <AnimatedBackground animated={false} />
 
-      <div className="projects-content relative z-10 flex-1 py-16 md:py-24 w-full">
+      <div className="projects-content relative z-10 flex-1 py-12 md:py-20 w-full">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-20">
           <div className="projects-container w-full max-w-[80rem] mx-auto">
             <motion.header

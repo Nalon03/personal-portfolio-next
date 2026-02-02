@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
     >
       <AnimatedBackground />
       
-      <div className="hero-content relative z-10 flex items-center justify-center min-h-0 md:h-full my-10 sm:my-16 md:my-20 lg:my-24 py-6 md:py-0">
+      <div className="hero-content relative z-10 flex items-center justify-center min-h-0 md:h-full my-8 sm:my-12 md:my-16 lg:my-20 py-4 md:py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="hero-card-wrapper relative flex items-center justify-center">
             <motion.div

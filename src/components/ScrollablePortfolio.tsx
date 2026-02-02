@@ -92,7 +92,7 @@ const ScrollablePortfolio: React.FC = () => {
   return (
     <div className="relative overflow-x-hidden" style={{ minHeight: '100vh', background: '#08203A' }}>
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-50 w-full py-4 sm:py-6 bg-black/20 backdrop-blur-sm"
+        className="fixed top-0 left-0 right-0 z-50 w-full py-3 sm:py-4 bg-black/20 backdrop-blur-sm"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -213,7 +213,7 @@ const ScrollablePortfolio: React.FC = () => {
 
       <motion.nav
         id="mobile-navigation"
-        className="md:hidden fixed top-[72px] sm:top-[88px] left-0 right-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/20 overflow-hidden"
+        className="md:hidden fixed top-[60px] sm:top-[72px] left-0 right-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/20 overflow-hidden"
         initial={false}
         animate={{
           opacity: mobileMenuOpen ? 1 : 0,

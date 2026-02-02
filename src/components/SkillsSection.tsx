@@ -62,7 +62,7 @@ const SkillsSection: React.FC = () => {
         <div className="skills-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="skills-content relative z-10 flex-1 py-16 md:py-24">
+      <div className="skills-content relative z-10 flex-1 py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="skills-container max-w-5xl mx-auto">
             <header className="skills-header text-center mb-10">
