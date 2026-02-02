@@ -16,6 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://grace-personal-portfolio-qgn4rrpcd-grace-nalons-projects.vercel.app'),
   title: 'Grace Yaa Nalon - Full-Stack Developer Portfolio',
   description: 'Personal portfolio showcasing full-stack development skills, projects, and experience. Frontend creativity meets backend expertise.',
   keywords: 'full-stack developer, React, Next.js, TypeScript, Node.js, portfolio',

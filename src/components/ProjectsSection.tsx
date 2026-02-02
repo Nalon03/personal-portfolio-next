@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import AnimatedBackground from './AnimatedBackground'
 
 const ProjectsSection: React.FC = () => {
@@ -53,7 +54,7 @@ const ProjectsSection: React.FC = () => {
       tech: ["Nest.js", "TypeScript", "JWT", "PostgreSQL"],
       image: "/api2.webp",
       // liveUrl: "#",
-      githubUrl: "https://github.com/Nalon03/BLOG-API"
+      githubUrl: "https://github.com/Nalon03/Nest-Blog-API"
     },
     {
       id: 5,
@@ -458,10 +459,12 @@ const ProjectsSection: React.FC = () => {
                   >
                     {project.image && project.image !== '/' ? (
                       <>
-                        <img 
-                          src={project.image} 
-                          alt="" 
-                          className="absolute inset-0 w-full h-full object-cover"
+                        <Image
+                          src={project.image}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 180px, 250px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       </>

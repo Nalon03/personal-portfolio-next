@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [],
+    remotePatterns: [],
   },
   webpack: (config, { dev }) => {
     if (dev) {
@@ -14,6 +14,7 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: false,
+    webpackBuildWorker: true,
   },
 }
 
