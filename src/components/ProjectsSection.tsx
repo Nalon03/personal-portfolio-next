@@ -16,6 +16,11 @@ const ProjectsSection: React.FC = () => {
   const targetSpeedRef = useRef(0.5)
   const animationRef = useRef<number>()
   const setWidthRef = useRef(0)
+  const isTouchingRef = useRef(false)
+  const touchStartXRef = useRef(0)
+  const touchStartYRef = useRef(0)
+  const touchStartPositionRef = useRef(0)
+  const touchHorizontalLockRef = useRef(false)
   
   const BASE_SPEED = 0.5
 
@@ -72,7 +77,7 @@ const ProjectsSection: React.FC = () => {
       tech: ["JavaScript", "HTML", "CSS",],
       image: "/todos.png",
       // liveUrl: "#",
-      githubUrl: "https://github.com/Nalon03/Todo-List-App"
+      githubUrl: "https://github.com/Nalon03/Todo_app"
     },
   ]
 
@@ -146,18 +151,18 @@ const ProjectsSection: React.FC = () => {
       return
     }
 
-    const easing = 0.05
-    currentSpeedRef.current += (targetSpeedRef.current - currentSpeedRef.current) * easing
-
-    positionRef.current += currentSpeedRef.current
-
     const singleSetWidth = getSingleSetWidth()
     if (!singleSetWidth) {
       animationRef.current = requestAnimationFrame(animate)
       return
     }
 
-    positionRef.current = positionRef.current % singleSetWidth
+    if (!isTouchingRef.current) {
+      const easing = 0.05
+      currentSpeedRef.current += (targetSpeedRef.current - currentSpeedRef.current) * easing
+      positionRef.current += currentSpeedRef.current
+      positionRef.current = positionRef.current % singleSetWidth
+    }
 
     trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
 
@@ -210,6 +215,74 @@ const ProjectsSection: React.FC = () => {
       wrapper.removeEventListener('wheel', handleWheel)
     }
   }, [getSingleSetWidth, isHovered])
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current
+    if (!wrapper || !trackRef.current) return
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return
+      isTouchingRef.current = true
+      touchHorizontalLockRef.current = false
+      touchStartXRef.current = e.touches[0].clientX
+      touchStartYRef.current = e.touches[0].clientY
+      touchStartPositionRef.current = positionRef.current
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length !== 1 || !isTouchingRef.current) return
+
+      const touchX = e.touches[0].clientX
+      const touchY = e.touches[0].clientY
+      const deltaX = Math.abs(touchX - touchStartXRef.current)
+      const deltaY = Math.abs(touchY - touchStartYRef.current)
+
+      if (!touchHorizontalLockRef.current) {
+        if (deltaX > deltaY && deltaX > 8) {
+          touchHorizontalLockRef.current = true
+        } else if (deltaY > 8) {
+          isTouchingRef.current = false
+          return
+        }
+      }
+
+      if (touchHorizontalLockRef.current) {
+        e.preventDefault()
+        positionRef.current = touchStartPositionRef.current + (touchStartXRef.current - touchX)
+        if (trackRef.current) {
+          trackRef.current.style.transition = 'none'
+          trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
+        }
+      }
+    }
+
+    const handleTouchEnd = () => {
+      if (!isTouchingRef.current) return
+      isTouchingRef.current = false
+      touchHorizontalLockRef.current = false
+      const singleSetWidth = getSingleSetWidth()
+      if (singleSetWidth && trackRef.current) {
+        positionRef.current = ((positionRef.current % singleSetWidth) + singleSetWidth) % singleSetWidth
+        trackRef.current.style.transition = 'transform 0.3s ease-out'
+        trackRef.current.style.transform = `translateX(-${positionRef.current}px)`
+        setTimeout(() => {
+          if (trackRef.current) trackRef.current.style.transition = ''
+        }, 300)
+      }
+    }
+
+    wrapper.addEventListener('touchstart', handleTouchStart, { passive: true })
+    wrapper.addEventListener('touchmove', handleTouchMove, { passive: false })
+    wrapper.addEventListener('touchend', handleTouchEnd, { passive: true })
+    wrapper.addEventListener('touchcancel', handleTouchEnd, { passive: true })
+
+    return () => {
+      wrapper.removeEventListener('touchstart', handleTouchStart)
+      wrapper.removeEventListener('touchmove', handleTouchMove)
+      wrapper.removeEventListener('touchend', handleTouchEnd)
+      wrapper.removeEventListener('touchcancel', handleTouchEnd)
+    }
+  }, [getSingleSetWidth])
 
   const headerIndexRef = useRef(0)
 
@@ -423,11 +496,11 @@ const ProjectsSection: React.FC = () => {
 
             <div 
               ref={wrapperRef}
-              className="projects-carousel-wrapper relative overflow-hidden w-full rounded-xl"
+              className="projects-carousel-wrapper relative overflow-hidden w-full rounded-xl touch-pan-y"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               role="region"
-              aria-label="Projects carousel - hover to pause auto-scroll"
+              aria-label="Projects carousel - hover to pause auto-scroll, swipe to scroll on mobile"
               aria-roledescription="carousel"
             >
               <div className="left-gradient-fade absolute inset-y-0 left-0 w-2 z-20 pointer-events-none bg-gradient-to-r from-[#0a2540] via-[#0a2540]/70 to-transparent" aria-hidden="true" />

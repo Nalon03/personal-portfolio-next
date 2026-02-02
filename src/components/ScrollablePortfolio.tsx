@@ -13,6 +13,7 @@ const navItems = ['Home', 'About', 'Skills', 'Projects', 'Contact']
 const ScrollablePortfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState('Home')
   const [mounted, setMounted] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navButtonRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const ScrollablePortfolio: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+    setMobileMenuOpen(false)
   }, [])
 
   // Handle keyboard navigation for nav items with arrow key support
@@ -171,24 +173,31 @@ const ScrollablePortfolio: React.FC = () => {
             </motion.nav>
             
             <motion.button
-              className="md:hidden text-white p-2 focus-ring"
+              className="md:hidden text-white p-2 focus-ring touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              aria-label="Open navigation menu"
-              aria-expanded="false"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
               type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
             >
-              <svg 
-                className="w-6 h-6" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              {mobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg 
+                  className="w-6 h-6" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </motion.button>
           </div>
         </div>
@@ -201,6 +210,47 @@ const ScrollablePortfolio: React.FC = () => {
           aria-hidden="true"
         />
       </motion.header>
+
+      <motion.nav
+        id="mobile-navigation"
+        className="md:hidden fixed top-[72px] sm:top-[88px] left-0 right-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/20 overflow-hidden"
+        initial={false}
+        animate={{
+          opacity: mobileMenuOpen ? 1 : 0,
+          height: mobileMenuOpen ? 'auto' : 0,
+          pointerEvents: mobileMenuOpen ? 'auto' : 'none',
+          visibility: mobileMenuOpen ? 'visible' : 'hidden',
+        }}
+        transition={{ duration: 0.2 }}
+        aria-label="Mobile navigation"
+        role="navigation"
+      >
+        <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+          {navItems.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => scrollToSection(item.toLowerCase())}
+              className={`text-left px-4 py-3 rounded-md font-medium transition-colors focus-ring touch-manipulation min-h-[44px] flex items-center ${
+                activeSection === item ? 'text-cyan-400 bg-white/10' : 'text-white/90 hover:bg-white/5'
+              }`}
+              aria-label={`Navigate to ${item} section`}
+              aria-current={activeSection === item ? 'page' : undefined}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </motion.nav>
+
+      {mobileMenuOpen && (
+        <button
+          type="button"
+          className="md:hidden fixed inset-0 z-30 bg-black/40 backdrop-blur-sm"
+          aria-label="Close menu"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
 
       <main id="main-content" role="main">
         <section id="home" aria-label="Introduction">
