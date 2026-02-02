@@ -174,19 +174,20 @@ const AboutSection: React.FC = () => {
         <div className="about-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="about-content relative z-10 w-full py-20 md:py-28">
+      <div className="about-content relative z-10 w-full py-14 md:py-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12">
           <div className="max-w-5xl mx-auto">
             <header className="about-header text-center mb-12 md:mb-16">
               <h1
                 id="about-heading"
-                className="about-title text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-display tracking-tight opacity-0 animate-fade-in"
+                className="text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display 
+                           tracking-tight mb-4 opacity-0 animate-fade-in"
                 style={{ animationFillMode: 'forwards' }}
               >
                 About <span className="about-title-accent gradient-text-cyan">Me</span>
               </h1>
               <div
-                className="about-divider w-16 h-1 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-4 rounded-full opacity-0 animate-fade-in-delay-2"
+                className="about-divider w-14 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
                 style={{ animationFillMode: 'forwards' }}
                 aria-hidden="true"
                 role="presentation"
@@ -199,14 +200,9 @@ const AboutSection: React.FC = () => {
               aria-label="Personal introduction"
             >
               <div className="about-greeting mb-6 text-center">
-                <span 
-                  className="about-badge inline-block px-3 py-1.5 text-[10px] sm:text-xs font-medium text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full mb-4 font-sans tracking-wide uppercase"
-                  role="text"
-                >
-                  Full-Stack Developer
-                </span>
+               
                 <h2 className="about-name text-xl sm:text-2xl font-bold text-white font-display animate-pop-pulse">
-                  Hi, I&apos;m Grace Yaa Nalon
+                  <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Hi</span>, I&apos;m Grace Yaa Nalon
                 </h2>
               </div>
 
@@ -256,7 +252,7 @@ const AboutSection: React.FC = () => {
                   I see clean engineering as a craft, not a rush. I focus on building systems that people can understand, maintain, and trust over time. For me, every line of code should earn its place, and every part of a system should be there because it actually matters.
                 </p>
 
-                <div className="about-values-divider w-12 h-1 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-8 rounded-full" aria-hidden="true" role="presentation" />
+                <div className="about-values-divider w-14 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-8 rounded-full" aria-hidden="true" role="presentation" />
               </div>
             </article>
           </div>
