@@ -126,7 +126,7 @@ const Hero: React.FC = () => {
               </motion.h1>
               
               <motion.div
-                className="hero-divider w-16 h-0.5 bg-white"
+                className="hero-divider w-16 h-0.5 bg-gradient-to-r from-red-400 to-red-600"
                 initial={{ width: 0 }}
                 animate={{ width: "4rem" }}
                 transition={{ duration: 1, delay: 1.0 }}
@@ -162,7 +162,7 @@ const Hero: React.FC = () => {
                 aria-label="View my projects portfolio"
                 type="button"
               >
-                Explore My Work
+                Check out my projects
               </motion.button>
               
               <motion.button
@@ -174,7 +174,7 @@ const Hero: React.FC = () => {
                 aria-label="Go to contact section to reach out"
                 type="button"
               >
-                Get in Touch
+                Get in touch
               </motion.button>
             </motion.div>
             </motion.article>

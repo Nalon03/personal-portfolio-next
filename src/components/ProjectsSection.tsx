@@ -21,57 +21,57 @@ const ProjectsSection: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with React, Node.js, and MongoDB",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "/project1.jpg",
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Entertainment App",
+      description: "Frontend entertainment app built with Angular and integrated with the Movie Database API",
+      tech: ["Angular", "Rest API", "Postgres",],
+      image: "/entertainements.webp",
+      //liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/Entertainment-App"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "Collaborative task management with real-time updates",
-      tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-      image: "/project2.jpg",
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Authentication API",
+      description: "Authentication APIs designed with Express.js and integrated with PostgreSQL",
+      tech: ["Express.js", "TypeScript", "JWT", "PostgreSQL"],
+      image: "/api.webp",
+      //liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/AUTHENTICATION-APP"
     },
     {
       id: 3,
-      title: "Portfolio Website",
-      description: "Modern portfolio website with animations and responsive design",
-      tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
-      image: "/project3.jpg",
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Crypto Trading App",
+      description: "Modern crypto app with animations and responsive design",
+      tech: ["React", "Framer Motion", "Tailwind CSS"],
+      image: "/crypto.webp",
+      // liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/crypto-trading-app-react"
     },
     {
       id: 4,
-      title: "Analytics Dashboard",
-      description: "Real-time data visualization dashboard with interactive charts",
-      tech: ["React", "D3.js", "Node.js", "WebSocket"],
-      image: "/project4.jpg",
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Blog API",
+      description: "Blog APIs designed with Nest.js and integrated with PostgreSQL",
+      tech: ["Nest.js", "TypeScript", "JWT", "PostgreSQL"],
+      image: "/api2.webp",
+      // liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/BLOG-API"
     },
     {
       id: 5,
-      title: "Social Media App",
-      description: "Feature-rich social platform with real-time messaging",
-      tech: ["Next.js", "GraphQL", "MongoDB", "Redis"],
-      image: "/project5.jpg",
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Countries App",
+      description: "Countries app with detailed information about countries",
+      tech: ["Angular", "Rest API", "Postgres",],
+      image: "/countries.webp",
+      // liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/Countries-App"
     },
     {
       id: 6,
-      title: "AI Content Generator",
-      description: "AI-powered content generation tool with custom templates",
-      tech: ["Python", "FastAPI", "OpenAI", "React"],
-      image: "/project6.jpg",
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "Todo List App",
+      description: "Todo list app with responsive design",
+      tech: ["JavaScript", "HTML", "CSS",],
+      image: "/todos.png",
+      // liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/Todo-List-App"
     },
   ]
 
@@ -318,9 +318,9 @@ const ProjectsSection: React.FC = () => {
     >
       <AnimatedBackground animated={false} />
 
-      <div className="projects-content relative z-10 flex-1 py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-          <div className="projects-container max-w-7xl mx-auto">
+      <div className="projects-content relative z-10 flex-1 py-16 md:py-24 w-full">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="projects-container w-full max-w-[80rem] mx-auto">
             <motion.header
               className="projects-header text-center mb-10"
               initial={{ opacity: 0, y: 30 }}
@@ -334,7 +334,7 @@ const ProjectsSection: React.FC = () => {
                 My <span className="projects-title-accent gradient-text-cyan">Projects</span>
               </h1>
               <div 
-                className="projects-divider w-14 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
+                className="projects-divider w-14 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mx-auto mt-3 rounded-full opacity-0 animate-fade-in-delay-2"
                 aria-hidden="true"
                 role="presentation"
               />
@@ -442,12 +442,12 @@ const ProjectsSection: React.FC = () => {
               {duplicatedProjects.map((project, index) => (
                 <article
                   key={`${project.id}-${index}`}
-                  className="project-card flex-shrink-0 w-[180px] sm:w-[250px] bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden cursor-pointer
+                  className="project-card flex flex-col flex-shrink-0 w-[180px] sm:w-[250px] min-h-[320px] sm:min-h-[340px] bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden cursor-pointer
                     transition-[border-color,box-shadow,background-color] duration-300 ease-out
                     hover:border-cyan-400/50 hover:shadow-[0_8px_30px_rgba(6,182,212,0.15)] hover:bg-white/[0.08]
                     focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2"
-                  onClick={() => handleCardClick(project.liveUrl)}
-                  onKeyDown={(e) => handleCardKeyDown(e, project.liveUrl)}
+                  // onClick={() => handleCardClick(project.liveUrl)}
+                  // onKeyDown={(e) => handleCardKeyDown(e, project.liveUrl)}
                   tabIndex={index < projects.length ? 0 : -1}
                   role="listitem"
                   aria-label={`${project.title} - ${project.description}`}
@@ -456,11 +456,24 @@ const ProjectsSection: React.FC = () => {
                     className="project-image h-[96px] sm:h-[110px] bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center relative overflow-hidden"
                     aria-hidden="true"
                   >
-                    <div className="project-icon text-4xl text-cyan-400 transition-transform duration-300 group-hover:scale-110">🚀</div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    {project.image && project.image !== '/' ? (
+                      <>
+                        <img 
+                          src={project.image} 
+                          alt="" 
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="project-icon text-4xl text-cyan-400 transition-transform duration-300 group-hover:scale-110">🚀</div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                      </>
+                    )}
                   </div>
                   
-                  <div className="project-body p-2">
+                  <div className="project-body flex flex-col flex-1 p-2 min-h-0">
                     <h3 className="project-title text-base font-bold text-white font-display tracking-tight mb-2">{project.title}</h3>
                     <p className="project-description text-xs sm:text-sm text-white/70 leading-relaxed font-sans mb-4 line-clamp-2">{project.description}</p>
                     
@@ -486,9 +499,9 @@ const ProjectsSection: React.FC = () => {
                       )}
                     </ul>
                     
-                    <div className="project-actions flex gap-2.5" role="group" aria-label="Project links">
-                      <a
-                        href={project.liveUrl}
+                    <div className="project-actions flex gap-2.5 mt-auto pt-1 my-3" role="group" aria-label="Project links">
+                      {/*<a
+                         href={project.liveUrl}
                         onClick={(e) => e.stopPropagation()}
                         className="project-btn-demo flex-1 px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/50 text-cyan-400 text-[10px] sm:text-[11px] font-medium text-center rounded-lg 
                           hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400 
@@ -498,7 +511,7 @@ const ProjectsSection: React.FC = () => {
                         rel="noopener noreferrer"
                       >
                         Live Demo
-                      </a>
+                      </a>*/}
                       <a
                         href={project.githubUrl}
                         onClick={(e) => e.stopPropagation()}
