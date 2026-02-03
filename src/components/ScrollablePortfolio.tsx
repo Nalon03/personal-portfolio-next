@@ -35,11 +35,13 @@ const ScrollablePortfolio: React.FC = () => {
   }, [])
 
   const scrollToSection = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId.toLowerCase())
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
     setMobileMenuOpen(false)
+    requestAnimationFrame(() => {
+      const element = document.getElementById(sectionId.toLowerCase())
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
   }, [])
 
   // Handle keyboard navigation for nav items with arrow key support
@@ -212,35 +214,36 @@ const ScrollablePortfolio: React.FC = () => {
       </motion.header>
 
       {mobileMenuOpen && (
-        <button
-          type="button"
+        <div
           className="md:hidden fixed inset-0 z-30 bg-[#08203A]/60 backdrop-blur-sm"
-          aria-label="Close menu"
+          aria-hidden="true"
           onClick={() => setMobileMenuOpen(false)}
+          onTouchEnd={(e) => {
+            e.preventDefault()
+            setMobileMenuOpen(false)
+          }}
         />
       )}
 
-      <motion.nav
+      <nav
         id="mobile-navigation"
-        className="md:hidden fixed top-[60px] sm:top-[72px] left-0 right-0 z-40 bg-[#08203A]/98 backdrop-blur-md border-b border-white/20 overflow-hidden"
-        initial={false}
-        animate={{
-          opacity: mobileMenuOpen ? 1 : 0,
-          height: mobileMenuOpen ? 'auto' : 0,
-          pointerEvents: mobileMenuOpen ? 'auto' : 'none',
-          visibility: mobileMenuOpen ? 'visible' : 'hidden',
-        }}
-        transition={{ duration: 0.2 }}
+        className={`md:hidden fixed top-[60px] sm:top-[72px] left-0 right-0 z-40 bg-[#08203A]/98 backdrop-blur-md border-b border-white/20 overflow-hidden transition-[opacity,visibility] duration-200 ${
+          mobileMenuOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none h-0 overflow-hidden'
+        }`}
         aria-label="Mobile navigation"
         role="navigation"
       >
-        <div className="container mx-auto px-4 py-4 flex flex-col gap-1" onClick={(e) => e.stopPropagation()}>
+        <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
           {navItems.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => scrollToSection(item.toLowerCase())}
-              className={`text-left px-4 py-3 rounded-md font-medium transition-colors focus-ring touch-manipulation min-h-[44px] flex items-center w-full ${
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                scrollToSection(item.toLowerCase())
+              }}
+              className={`text-left px-4 py-3 rounded-md font-medium transition-colors focus-ring touch-manipulation min-h-[44px] flex items-center w-full cursor-pointer ${
                 activeSection === item ? 'text-cyan-400 bg-white/10' : 'text-white/90 hover:bg-white/5'
               }`}
               aria-label={`Navigate to ${item} section`}
@@ -250,7 +253,7 @@ const ScrollablePortfolio: React.FC = () => {
             </button>
           ))}
         </div>
-      </motion.nav>
+      </nav>
 
       <main id="main-content" role="main">
         <section id="home" aria-label="Introduction">
