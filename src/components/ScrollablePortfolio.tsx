@@ -37,7 +37,7 @@ const ScrollablePortfolio: React.FC = () => {
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId.toLowerCase())
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
     setMobileMenuOpen(false)
   }, [])
@@ -211,9 +211,18 @@ const ScrollablePortfolio: React.FC = () => {
         />
       </motion.header>
 
+      {mobileMenuOpen && (
+        <button
+          type="button"
+          className="md:hidden fixed inset-0 z-30 bg-[#08203A]/60 backdrop-blur-sm"
+          aria-label="Close menu"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       <motion.nav
         id="mobile-navigation"
-        className="md:hidden fixed top-[60px] sm:top-[72px] left-0 right-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/20 overflow-hidden"
+        className="md:hidden fixed top-[60px] sm:top-[72px] left-0 right-0 z-40 bg-[#08203A]/98 backdrop-blur-md border-b border-white/20 overflow-hidden"
         initial={false}
         animate={{
           opacity: mobileMenuOpen ? 1 : 0,
@@ -225,13 +234,13 @@ const ScrollablePortfolio: React.FC = () => {
         aria-label="Mobile navigation"
         role="navigation"
       >
-        <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+        <div className="container mx-auto px-4 py-4 flex flex-col gap-1" onClick={(e) => e.stopPropagation()}>
           {navItems.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => scrollToSection(item.toLowerCase())}
-              className={`text-left px-4 py-3 rounded-md font-medium transition-colors focus-ring touch-manipulation min-h-[44px] flex items-center ${
+              className={`text-left px-4 py-3 rounded-md font-medium transition-colors focus-ring touch-manipulation min-h-[44px] flex items-center w-full ${
                 activeSection === item ? 'text-cyan-400 bg-white/10' : 'text-white/90 hover:bg-white/5'
               }`}
               aria-label={`Navigate to ${item} section`}
@@ -242,15 +251,6 @@ const ScrollablePortfolio: React.FC = () => {
           ))}
         </div>
       </motion.nav>
-
-      {mobileMenuOpen && (
-        <button
-          type="button"
-          className="md:hidden fixed inset-0 z-30 bg-black/40 backdrop-blur-sm"
-          aria-label="Close menu"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
 
       <main id="main-content" role="main">
         <section id="home" aria-label="Introduction">
