@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
     >
       <AnimatedBackground />
       
-      <div className="hero-content relative z-10 flex items-center justify-center min-h-0 md:h-full my-8 sm:my-12 md:my-16 lg:my-20 py-4 md:py-0">
+      <div className="hero-content relative z-10 flex items-center justify-center min-h-0 md:h-full my-8 sm:my-12 md:my-16 lg:my-20 pt-10 pb-4 md:pt-0 md:pb-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="hero-card-wrapper relative flex items-center justify-center">
             <motion.div
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.article
-              className="hero-card relative w-full min-h-[420px] sm:min-h-0 sm:w-[629px] sm:h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center px-4 sm:px-6 py-6"
+              className="hero-card relative w-full min-h-[420px] sm:min-h-0 sm:w-[629px] sm:h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center px-4 sm:px-6 py-6 mt-4 md:mt-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
