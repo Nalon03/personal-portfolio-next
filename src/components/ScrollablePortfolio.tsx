@@ -256,23 +256,23 @@ const ScrollablePortfolio: React.FC = () => {
       </nav>
 
       <main id="main-content" role="main">
-        <section id="home" aria-label="Introduction">
+        <section id="home" className="scroll-mt-20 md:scroll-mt-0" aria-label="Introduction">
           <Hero />
         </section>
 
-        <section id="about" aria-label="About me">
+        <section id="about" className="scroll-mt-20 md:scroll-mt-0" aria-label="About me">
           <AboutSection />
         </section>
 
-        <section id="skills" aria-label="Technical skills">
+        <section id="skills" className="scroll-mt-20 md:scroll-mt-0" aria-label="Technical skills">
           <SkillsSection />
         </section>
 
-        <section id="projects" aria-label="Portfolio projects">
+        <section id="projects" className="scroll-mt-20 md:scroll-mt-0" aria-label="Portfolio projects">
           <ProjectsSection />
         </section>
         
-        <section id="contact" aria-label="Contact information">
+        <section id="contact" className="scroll-mt-20 md:scroll-mt-0" aria-label="Contact information">
           <ContactSection />
         </section>
       </main>
