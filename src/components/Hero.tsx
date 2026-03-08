@@ -30,14 +30,14 @@ const Hero: React.FC = () => {
 
   return (
     <section 
-      className="hero-section relative min-h-0 md:min-h-screen flex flex-col overflow-hidden md:overflow-visible"
+      className="hero-section relative min-h-0 sm:min-h-screen flex flex-col overflow-hidden md:overflow-visible"
       aria-labelledby="hero-title"
     >
       <AnimatedBackground />
       
-      <div className="hero-content relative z-10 flex items-center justify-center min-h-0 md:h-full my-8 sm:my-12 md:my-16 lg:my-20 pt-10 pb-4 md:pt-0 md:pb-0">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="hero-card-wrapper relative flex items-center justify-center">
+      <div className="hero-content relative z-10 flex-1 flex items-center justify-center min-h-0 w-full pt-20 pb-8 sm:pt-10 sm:pb-10 md:py-12">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 w-full">
+          <div className="hero-card-wrapper relative flex items-center justify-center w-full">
             <motion.div
               className="hero-arrow hero-arrow-left hidden md:flex items-center justify-center absolute -left-8 lg:-left-16 top-1/2 -translate-y-1/2 pointer-events-none"
               animate={{ y: [-6, 0, -6], opacity: [0.6, 1, 0.6] }}
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.article
-              className="hero-card relative w-full min-h-[420px] sm:min-h-0 sm:w-[629px] sm:h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center px-4 sm:px-6 py-6 mt-4 md:mt-0"
+              className="hero-card relative w-full min-h-[420px] sm:min-h-0 sm:w-[629px] sm:h-[491px] md:w-[699px] md:h-[434px] lg:w-[639px] lg:h-[440px] rounded-2xl border border-white/30 flex flex-col items-center justify-center px-4 sm:px-6 py-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}

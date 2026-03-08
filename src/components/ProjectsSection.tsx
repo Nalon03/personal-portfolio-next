@@ -68,7 +68,7 @@ const ProjectsSection: React.FC = () => {
       tech: ["Angular", "Rest API", "Postgres",],
       image: "/countries.webp",
       // liveUrl: "#",
-      githubUrl: "https://github.com/Nalon03/Countries-App"
+      githubUrl: "https://github.com/Nalon03/Countries-App/tree/set-up"
     },
     {
       id: 6,
@@ -79,6 +79,42 @@ const ProjectsSection: React.FC = () => {
       // liveUrl: "#",
       githubUrl: "https://github.com/Nalon03/Todo_app"
     },
+    {
+      id: 7,
+      title: "Personal Portfolio",
+      description: "Personal portfolio built with Next.js and Tailwind CSS",
+      tech: ["Next.js", "Tailwind CSS", "TypeScript",],
+      image: "/portfolio.png",
+      liveUrl: "https://grace-personal-portfolio.vercel.app/",
+      githubUrl: "https://github.com/Nalon03/personal-portfolio-next"
+    }, 
+    {
+      id: 8,
+      title: "OAuth2.0 Authentication backend",
+      description: "OAuth2.0 Authentication with Node.js and PostgreSQL",
+      tech: ["Node.js", "TypeScript"],
+      image: "/Oauth.webp",
+      // liveUrl: "#",
+      githubUrl: "https://github.com/Nalon03/azure-auth-backend-for-frontend"
+    },
+    {
+      id: 9,
+      title: "OAuth2.0 Authentication frontend",
+      description: "OAuth2.0 Authentication with Next.js and Tailwind CSS",
+      tech: ["Next.js", "Tailwind CSS", "TypeScript",],
+      image: "/MS-logo.jpeg",
+      liveUrl: "https://grace-personal-portfolio.vercel.app/",
+      githubUrl: "https://github.com/Nalon03/azure-auth-frontend"
+    },
+    {
+      id: 10,
+      title: "Automobile configuration App(Team Project)",
+      description: "Automobile configuration app with responsive design",
+      tech: ["Angular", "Rest API", "Postgres", "Nest.js", "TypeScript", "Three.js"],
+      image: "/Automobile.webp",
+      liveUrl: "https://accelerator-injection-molding-chi.vercel.app/home",
+      githubUrl: "https://github.com/Bilal-Abubakari/Accelerator-Injection-Molding"
+    }
   ]
 
   const updateSetWidth = useCallback(() => {

@@ -118,11 +118,13 @@ const ContactSection: React.FC = () => {
       setTimeout(() => {
         setStatus({ type: 'idle', message: '' })
       }, 5000)
-
     } catch (error) {
+      const friendlyFallback = 'Something went wrong. Please try again later.'
+      const message = error instanceof Error ? error.message : friendlyFallback
+      const isTechnicalError = /JSON|Unexpected token|SyntaxError|fetch|DOCTYPE|network|Failed to fetch/i.test(message)
       setStatus({
         type: 'error',
-        message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
+        message: isTechnicalError ? friendlyFallback : message
       })
     }
   }

@@ -62,10 +62,10 @@ const SkillsSection: React.FC = () => {
         <div className="skills-bg-glow-blue absolute bottom-40 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="skills-content relative z-10 flex-1 py-12 md:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="skills-container max-w-5xl mx-auto">
-            <header className="skills-header text-center mb-10">
+      <div className="skills-content relative z-10 flex-1 flex items-center justify-center min-h-0 w-full py-10 sm:py-12 md:py-16 lg:py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="skills-container max-w-5xl mx-auto w-full">
+            <header className="skills-header text-center mb-8 sm:mb-10">
               <h1 
                 id="skills-heading"
                 className="skills-title text-2xl sm:text-2xl lg:text-2xl font-bold text-white font-display 
@@ -85,7 +85,7 @@ const SkillsSection: React.FC = () => {
             </header>
 
             <div 
-              className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="skills-grid grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 md:gap-8"
               role="list"
               aria-label="Skill categories"
             >

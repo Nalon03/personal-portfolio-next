@@ -18,12 +18,12 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, delay = 0 }) =>
   
   return (
     <article 
-      className="skill-category-card glass-card rounded-xl p-4 opacity-0 animate-slide-up"
+      className="skill-category-card glass-card rounded-xl p-4 sm:p-5 md:p-6 opacity-0 animate-slide-up"
       style={{ animationDelay: `${delay}ms`, animationFillMode: 'forwards' }}
       role="listitem"
       aria-labelledby={categoryId}
     >
-      <header className="skill-category-header flex items-center gap-3 mb-5">
+      <header className="skill-category-header flex items-center gap-3 mb-4 sm:mb-5">
         <div 
           className="skill-category-icon-wrapper w-5 h-5 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 
                         flex items-center justify-center text-cyan-400 border border-cyan-500/20"
@@ -40,7 +40,7 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, delay = 0 }) =>
       </header>
 
       <ul 
-        className="skill-category-skills-grid flex flex-wrap gap-2"
+        className="skill-category-skills-grid flex flex-wrap gap-2 sm:gap-2.5"
         aria-label={`${category.title} skills`}
         role="list"
       >
